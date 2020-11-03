@@ -4,21 +4,21 @@
 <link rel="stylesheet" href="myCSS.css">
 <body>
 
-<h3>Contact Form</h3>
+<h3>Dine oplysninger</h3>
 
 <div class="container">
-    <form action="/action_page.php">
+    <form action="/logIn">
 
         <label for="fname">Fornavn</label>
-        <input type="text" id="fname" name="firstname" placeholder="Indtast dit fornavn">
+        <input type="text" id="fname" name="username" placeholder="Indtast dit fornavn">
 
         <label for="lname">Efternavn</label>
-        <input type="text" id="lname" name="lastname" placeholder="Indstast dit efternavn">
+        <input type="text" id="lname" name="password" placeholder="Indstast dit efternavn">
 
 
-        <textarea id="subject" name="subject" placeholder="Skriv noget om dig selv" style="height:200px"></textarea>
-
-        <input type="submit" value="Opret dig">
+        <!--<textarea id="subject" name="subject" placeholder="Skriv noget om dig selv" style="height:200px"></textarea> -->
+        <button type="submit" name="action" value="login">Log ind</button>
+        <button type="submit" name="action" value="create">Opret mig</button>
 
     </form>
 </div>
