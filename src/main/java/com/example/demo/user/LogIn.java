@@ -6,4 +6,11 @@ public class LogIn {
         Boolean exsist = false;
         return exsist;
     }
+
+    public void login (String username, String password){
+
+    }
+    public void create (String username, String password){
+
+    }
 }
