@@ -29,6 +29,7 @@ public class MyController {
             @RequestParam String password,
             @RequestParam String action,
             Model model) {
+        //forsøg på at få index formen til både at kunne logge ind og oprette
         if (action == "login")
             logIn.login(username, password);
         else if (action == "create")
