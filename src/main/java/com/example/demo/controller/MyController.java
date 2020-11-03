@@ -14,6 +14,12 @@ public class MyController {
         return "index";
     }
 
+    @GetMapping("/ommig")
+    public String omMig() {
+        return "omMig";
+    }
+
+
     @PostMapping("/logIn")
     public String logIn(
             @RequestParam String username,
