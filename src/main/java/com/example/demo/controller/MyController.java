@@ -27,16 +27,19 @@ public class MyController {
     public String logIn(
             @RequestParam String username,
             @RequestParam String password,
-            @RequestParam String action,
-            Model model) {
+            @RequestParam String action) {
         //forsøg på at få index formen til både at kunne logge ind og oprette
-        if (action == "login")
+        if (action == "login") {
+            System.out.println("login tried");
             logIn.login(username, password);
-        else if (action == "create")
+        } else if (action == "create") {
+            System.out.println("create tried");
             logIn.create(username, password);
-        else
+        } else {
             System.out.println("der er gået noget galt");
+        }
         return "omMig";
+
     }
 
     //hugget fra gammel projekt !på ingen måde færdigt!
