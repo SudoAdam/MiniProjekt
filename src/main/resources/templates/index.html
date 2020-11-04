@@ -1,12 +1,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 </head>
 <link rel="stylesheet" href="myCSS.css">
 <body>
+<th:block th:include="/includes/header :: header"></th:block>
 
-<h3>Dine oplysninger</h3>
 
 <div class="container">
+    <h3 id="header3">LOG IND</h3>
     <form action="/logIn">
 
         <label for="fname">Fornavn</label>
@@ -23,5 +24,7 @@
     </form>
 </div>
 
+
+<th:block th:include="/includes/footer :: footer"></th:block>
 </body>
 </html>
