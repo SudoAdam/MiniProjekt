@@ -9,7 +9,7 @@ public class JDBCWriter {
     private Connection connection = null;
 
     public boolean setConnection() {
-        final String url = "jdbc:mysql://localhost:3306/urlread?serverTimezone=UTC";
+        final String url = "jdbc:mysql://localhost:3306/userdb?serverTimezone=UTC";
         boolean bres = false;
         try {
             connection = DriverManager.getConnection(url, "user", "User");
