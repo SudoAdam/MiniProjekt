@@ -6,6 +6,7 @@ import com.example.demo.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -31,6 +32,11 @@ public class MyController {
         return "ommig";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "omos";
+    }
+
 
     //hugget fra gammel projekt !på ingen måde færdigt!
     @GetMapping("/logIn")
@@ -45,6 +51,7 @@ public class MyController {
             System.out.println("login tried");
            user = logIn.login(username, password);
             System.out.println(user);
+            jdbcWriter.searchDB(username,password);
         } else if (action == 2) {
             System.out.println("create tried");
             //logIn.create(username, password);
@@ -55,13 +62,18 @@ public class MyController {
         return "search";
 
     }
-/*
+
     //hugget fra gammel projekt !på ingen måde færdigt!
     @PostMapping("/createUser")
     public String createUser(
             @RequestParam String username,
             @RequestParam String password,
             Model model) {
-        return "confirmation";
-    }*/
+        //find en måde at parse de 2 info videre til create...
+        if (logIn.userExsist(username) == false){
+            return "createUser";
+        } else {
+            return "userAlreadyExsists";
+        }
+    }
 }
