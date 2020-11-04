@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.database.JDBCWriter;
 import com.example.demo.user.LogIn;
 import com.example.demo.user.User;
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MyController {
     LogIn logIn = new LogIn();
     User user = new User();
+    JDBCWriter jdbcWriter = new JDBCWriter();
+
 
     @GetMapping("/")
     public String index() {
+        jdbcWriter.setConnection();
         return "index";
     }
 
