@@ -130,3 +130,7 @@ input[type=submit]:hover {
     text-decoration: none;
     border-radius: 4px;
 }
+
+body.home .site-footer {
+    display: none;
+}
