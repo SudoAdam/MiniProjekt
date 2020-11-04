@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.user.LogIn;
+import com.example.demo.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MyController {
     LogIn logIn = new LogIn();
+    User user = new User();
 
     @GetMapping("/")
     public String index() {
@@ -37,7 +39,8 @@ public class MyController {
         System.out.println("Så langt så godt");
         if (action == 1) {
             System.out.println("login tried");
-            //logIn.login(username, password);
+           user = logIn.login(username, password);
+            System.out.println(user);
         } else if (action == 2) {
             System.out.println("create tried");
             //logIn.create(username, password);
