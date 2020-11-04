@@ -4,7 +4,6 @@ import com.example.demo.user.LogIn;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -16,9 +15,9 @@ public class MyController {
         return "index";
     }
 
-    @GetMapping("/ommig")
-    public String omMig() {
-        return "omMig";
+    @GetMapping("/search")
+    public String search() {
+        return "search";
     }
 
 
@@ -41,7 +40,7 @@ public class MyController {
             System.out.println("der er gået noget galt");
         }
 
-        return "omMig";
+        return "search";
 
     }
 /*
