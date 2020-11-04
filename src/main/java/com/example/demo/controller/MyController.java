@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLOutput;
+
 @Controller
 public class MyController {
     LogIn logIn = new LogIn();
@@ -47,11 +49,13 @@ public class MyController {
             Model model) {
         //forsøg på at få index formen til både at kunne logge ind og oprette
         System.out.println("Så langt så godt");
+        int id = -1;
+
         if (action == 1) {
             System.out.println("login tried");
-           user = logIn.login(username, password);
-            System.out.println(user);
-            jdbcWriter.searchDB(username,password);
+           /*user = logIn.login(username, password);
+            System.out.println(user);*/
+            id = jdbcWriter.logIn(username, password);
         } else if (action == 2) {
             System.out.println("create tried");
             //logIn.create(username, password);
@@ -59,7 +63,8 @@ public class MyController {
             System.out.println("der er gået noget galt");
         }
 
-        return "search";
+            System.out.println("id =" + id);
+            return "search";
 
     }
 
@@ -70,10 +75,11 @@ public class MyController {
             @RequestParam String password,
             Model model) {
         //find en måde at parse de 2 info videre til create...
-        if (logIn.userExsist(username) == false){
+        if (logIn.userExsist(username) == false) {
             return "createUser";
         } else {
             return "userAlreadyExsists";
         }
     }
+
 }
