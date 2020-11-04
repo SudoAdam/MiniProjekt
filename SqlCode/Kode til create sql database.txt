@@ -1,0 +1,160 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema userdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema userdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `userdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `userdb` ;
+
+-- -----------------------------------------------------
+-- Table `userdb`.`gender`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`gender` (
+  `id_gender` TINYINT NOT NULL,
+  `gender` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_gender`),
+  UNIQUE INDEX `gender_UNIQUE` (`gender` ASC) VISIBLE,
+  UNIQUE INDEX `id_gender_UNIQUE` (`id_gender` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `userdb`.`religion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`religion` (
+  `id_religion` TINYINT NOT NULL,
+  `religion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_religion`),
+  UNIQUE INDEX `religion_UNIQUE` (`religion` ASC) VISIBLE,
+  UNIQUE INDEX `id_religion_UNIQUE` (`id_religion` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `userdb`.`sexualitet`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`sexualitet` (
+  `id_sexualitet` TINYINT NOT NULL AUTO_INCREMENT,
+  `sexualitet` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_sexualitet`),
+  UNIQUE INDEX `sexualitet_UNIQUE` (`sexualitet` ASC) VISIBLE,
+  UNIQUE INDEX `id_sexualitet_UNIQUE` (`id_sexualitet` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema userdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema userdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `userdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `userdb` ;
+
+-- -----------------------------------------------------
+-- Table `userdb`.`gender`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`gender` (
+  `id_gender` TINYINT NOT NULL,
+  `gender` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_gender`),
+  UNIQUE INDEX `gender_UNIQUE` (`gender` ASC) VISIBLE,
+  UNIQUE INDEX `id_gender_UNIQUE` (`id_gender` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `userdb`.`religion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`religion` (
+  `id_religion` TINYINT NOT NULL,
+  `religion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_religion`),
+  UNIQUE INDEX `religion_UNIQUE` (`religion` ASC) VISIBLE,
+  UNIQUE INDEX `id_religion_UNIQUE` (`id_religion` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `userdb`.`sexuality`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`sexuality` (
+  `id_sexualitet` TINYINT NOT NULL AUTO_INCREMENT,
+  `sexuality` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_sexualitet`),
+  UNIQUE INDEX `sexualitet_UNIQUE` (`sexuality` ASC) VISIBLE,
+  UNIQUE INDEX `id_sexualitet_UNIQUE` (`id_sexualitet` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `userdb`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`users` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(50) NULL DEFAULT NULL,
+  `surname` VARCHAR(150) NULL DEFAULT NULL,
+  `town` VARCHAR(50) NULL DEFAULT NULL,
+  `age` INT NULL DEFAULT NULL,
+  `about` VARCHAR(2500) NULL DEFAULT NULL,
+  `sexualitet_id_sexualitet` TINYINT NULL DEFAULT NULL,
+  `gender_id_gender` TINYINT NULL DEFAULT NULL,
+  `religion_id_religion` TINYINT NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `id_UNIQUE` (`user_id` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
+  INDEX `fk_users_sexualitet_idx` (`sexualitet_id_sexualitet` ASC) VISIBLE,
+  INDEX `fk_users_gender1_idx` (`gender_id_gender` ASC) VISIBLE,
+  INDEX `fk_users_religion1_idx` (`religion_id_religion` ASC) VISIBLE,
+  CONSTRAINT `fk_users_gender1`
+    FOREIGN KEY (`gender_id_gender`)
+    REFERENCES `userdb`.`gender` (`id_gender`),
+  CONSTRAINT `fk_users_religion1`
+    FOREIGN KEY (`religion_id_religion`)
+    REFERENCES `userdb`.`religion` (`id_religion`),
+  CONSTRAINT `fk_users_sexualitet`
+    FOREIGN KEY (`sexualitet_id_sexualitet`)
+    REFERENCES `userdb`.`sexuality` (`id_sexualitet`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
