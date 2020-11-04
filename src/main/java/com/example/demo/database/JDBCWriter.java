@@ -14,6 +14,7 @@ public class JDBCWriter {
         try {
             connection = DriverManager.getConnection(url, "user", "User");
             bres = true;
+            System.out.println("connection SUCSSES");
         } catch (SQLException ioerr) {
             System.out.println("Vi fik IKKE connection=" + ioerr.getMessage());
         }
@@ -41,14 +42,14 @@ public class JDBCWriter {
         return v1;
     }
 
-    public int searchDB(String aUrl, String aWord) {
-        String searchStr = "SELECT count(*) as line FROM urlreads where url like ? and line like ?";
+    public int searchDB(String user, String pass) {
+        String searchStr = "SELECT count(*) as line FROM users where username like ? and password like ?";
         PreparedStatement preparedStatement;
         int res = -1;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
-            preparedStatement.setString(1, "%" + aUrl + "%");
-            preparedStatement.setString(2, "%" + aWord + "%");
+            preparedStatement.setString(1, "%" + user + "%");
+            preparedStatement.setString(2, "%" + pass + "%");
             System.out.println(searchStr);
             ResultSet resset = preparedStatement.executeQuery();
             if (resset.next()) {
