@@ -20,6 +20,11 @@ public class MyController {
         return "search";
     }
 
+    @GetMapping("/ommig")
+    public String ommig() {
+        return "ommig";
+    }
+
 
     //hugget fra gammel projekt !på ingen måde færdigt!
     @GetMapping("/logIn")
