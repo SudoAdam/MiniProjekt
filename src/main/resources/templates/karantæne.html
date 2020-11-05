@@ -2,12 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="myCSS.css">
+    <th:block th:include="/includes/indexHeader :: header"></th:block>
+    <title>Karantæne</title>
 </head>
 <body>
-<h2 style="text-align: center">Du er kommet i 14 dages karantæne</h2>
+<div style="text-align: center">
+<h1>Du er kommet i 14 dages karantæne</h1>
 <p>Da du d.(dato) registrerede dig som Corona-smittet, har vi sat dig i 14 dages karantæne.</p>
 <p>Der er (X) dage tilbage, før du må bruge CoronaDating igen.</p>
+</div>
 </body>
 <th:block th:include="/includes/footer :: footer"></th:block>
 </html>
