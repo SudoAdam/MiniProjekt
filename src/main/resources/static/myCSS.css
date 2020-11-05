@@ -61,7 +61,7 @@ input[type=submit]:hover {
     width: 768px;
     max-width: 100%;
     min-height: 400px;
-    margin: 120px auto auto auto;
+    margin: 50px auto auto auto;
     box-shadow: 0 20px 78px rgba(0,0,0,1),
     0 50px 50px rgba(0,0,0,0.22);
 }
@@ -70,6 +70,7 @@ input[type=submit]:hover {
     text-align: center;
     font: small-caps bold 30px sans-serif;
     margin: 10px 0px 10px 0px;
+    color: #333333;
 }
 
 .header {
@@ -154,5 +155,8 @@ input[type=submit]:hover {
     border-radius: 4px;
 }
 
+.div_text {
+    margin: auto;
+}
 
 

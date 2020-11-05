@@ -42,25 +42,35 @@ public class JDBCWriter {
         return v1;
     }
 
-    public int searchDB(String user, String pass) {
-        String searchStr = "SELECT count(*) as line FROM users where username like ? and password like ?";
+    public int logIn(String user, String pass) {
+        String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ?";
         PreparedStatement preparedStatement;
         int res = -1;
+        int id = -1;
+        ResultSet resset = null;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
             preparedStatement.setString(1, "%" + user + "%");
             preparedStatement.setString(2, "%" + pass + "%");
             System.out.println(searchStr);
-            ResultSet resset = preparedStatement.executeQuery();
+            resset = preparedStatement.executeQuery();
             if (resset.next()) {
                 String str = "" + resset.getObject(1);
                 res = Integer.parseInt(str);
                 System.out.println("fundet antal = " + res);
             }
+            if (res == 1) {
+                String idOBJ = "" + resset.getObject("user_id");
+                id = Integer.parseInt(idOBJ);
+            } else {
+                System.out.println("login fejl. antal fundne profiler: " + res);
+            }
+
         } catch (SQLException sqlerr) {
             System.out.println("fejl i søgning = " + sqlerr.getMessage());
         }
-        return res;
+
+        return id;
     }
 
     public int deleteRows(String aURL, String aWord) {
