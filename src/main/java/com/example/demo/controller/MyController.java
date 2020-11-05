@@ -42,6 +42,10 @@ public class MyController {
     @GetMapping("/karantæne")
     public String karantæne(){ return "karantæne";}
 
+    @GetMapping("/profil")
+    public String profil(){return "profil";}
+
+
     //hugget fra gammel projekt !på ingen måde færdigt!
     @GetMapping("/logIn")
     public String logIn(
