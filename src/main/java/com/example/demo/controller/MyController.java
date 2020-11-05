@@ -31,6 +31,7 @@ public class MyController {
 
     @GetMapping("/ommig")
     public String ommig() {
+        System.out.println(user);
         return "ommig";
     }
 
@@ -40,14 +41,16 @@ public class MyController {
     }
 
     @GetMapping("/karantæne")
-    public String karantæne(){ return "karantæne";}
+    public String karantæne() {
+        return "karantæne";
+    }
 
     @GetMapping("/profil")
     public String profil(){return "profil";}
 
 
     //hugget fra gammel projekt !på ingen måde færdigt!
-    @GetMapping("/logIn")
+    @PostMapping("/logIn")
     public String logIn(
             @RequestParam String username,
             @RequestParam String password,
@@ -59,18 +62,25 @@ public class MyController {
 
         if (action == 1) {
             System.out.println("login tried");
-           /*user = logIn.login(username, password);
-            System.out.println(user);*/
-            id = jdbcWriter.logIn(username, password);
+            //log in action
+
+            if (logIn.login(username, password) != null) {
+                user = logIn.login(username, password);
+                return "ommig";
+            } else {
+                return "index";
+            }
+
         } else if (action == 2) {
             System.out.println("create tried");
-            //logIn.create(username, password);
+            logIn.create(username, password);
+
         } else {
             System.out.println("der er gået noget galt");
         }
 
-            System.out.println("id =" + id);
-            return "search";
+        System.out.println("id =" + id);
+        return "search";
 
     }
 
@@ -81,11 +91,12 @@ public class MyController {
             @RequestParam String password,
             Model model) {
         //find en måde at parse de 2 info videre til create...
-        if (logIn.userExsist(username) == false) {
+       /* if (logIn.userExsist(username) == false) {
             return "createUser";
         } else {
             return "userAlreadyExsists";
-        }
+        }*/
+        return null; // skal ikke bruges.
     }
 
 }

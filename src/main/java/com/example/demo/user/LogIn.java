@@ -1,17 +1,32 @@
 package com.example.demo.user;
 
+import com.example.demo.controller.MyController;
+import com.example.demo.database.Database;
+import com.example.demo.database.JDBCWriter;
+
 public class LogIn {
 
-    public boolean userExsist (String user){
+    JDBCWriter jdbcWriter = new JDBCWriter();
+
+   /* public boolean userExsist(String user) {
         Boolean exsist = false;
+
+        if (Database.findUser(user) == 1)
+            exsist = true;
         return exsist;
+    }*/
+
+    public User login(String username, String password) {
+        int id = jdbcWriter.logIn(username, password);
+        if (id != -1) {
+            User user = new User(id, username, password);
+            return user;
+        } else {
+            return null;
+        }
     }
 
-    public User login (String username, String password){
-      User user = new User(1, username, password);
-      return user;
-    }
-    public void create (String username, String password){
+    public void create(String username, String password) {
 
     }
 }
