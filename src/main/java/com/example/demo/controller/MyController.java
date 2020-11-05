@@ -39,6 +39,8 @@ public class MyController {
         return "omos";
     }
 
+    @GetMapping("/karantæne")
+    public String karantæne(){ return "karantæne";}
 
     //hugget fra gammel projekt !på ingen måde færdigt!
     @GetMapping("/logIn")
