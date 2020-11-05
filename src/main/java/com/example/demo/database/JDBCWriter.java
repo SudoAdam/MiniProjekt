@@ -12,13 +12,12 @@ public class JDBCWriter {
         final String url = "jdbc:mysql://localhost:3306/userdb?serverTimezone=UTC";
         boolean bres = false;
         try {
-            connection = DriverManager.getConnection(url, "user", "User");
+            connection = DriverManager.getConnection(url, "root", "Computerlastbil1");
             bres = true;
             System.out.println("connection SUCSSES");
         } catch (SQLException ioerr) {
             System.out.println("Vi fik IKKE connection=" + ioerr.getMessage());
         }
-
         return bres;
     }
 

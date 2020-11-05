@@ -1,25 +1,4 @@
--- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema userdb
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema userdb
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `userdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `userdb` ;
-
--- -----------------------------------------------------
--- Table `userdb`.`gender`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `userdb`.`gender` (
   `id_gender` TINYINT NOT NULL,
   `gender` VARCHAR(45) NOT NULL,
@@ -94,6 +73,57 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 -- Table `userdb`.`religion`
 -- -----------------------------------------------------
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema userdb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema userdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `userdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `userdb` ;
+
+-- -----------------------------------------------------
+-- Table `userdb`.`gender`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`gender` (
+  `id_gender` TINYINT NOT NULL,
+  `gender` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_gender`),
+  UNIQUE INDEX `gender_UNIQUE` (`gender` ASC) VISIBLE,
+  UNIQUE INDEX `id_gender_UNIQUE` (`id_gender` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `userdb`.`messages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`messages` (
+  `id_messages` INT NOT NULL AUTO_INCREMENT,
+  `id_sender` INT NULL DEFAULT NULL,
+  `id_reciever` INT NULL DEFAULT NULL,
+  `message` VARCHAR(2500) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_messages`),
+  UNIQUE INDEX `id_messages_UNIQUE` (`id_messages` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `userdb`.`religion`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `userdb`.`religion` (
   `id_religion` TINYINT NOT NULL,
   `religion` VARCHAR(45) NOT NULL,
@@ -150,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `userdb`.`users` (
     FOREIGN KEY (`sexualitet_id_sexualitet`)
     REFERENCES `userdb`.`sexuality` (`id_sexualitet`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
