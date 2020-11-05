@@ -8,6 +8,7 @@ public class LogIn {
 
     JDBCWriter jdbcWriter = new JDBCWriter();
 
+
    /* public boolean userExsist(String user) {
         Boolean exsist = false;
 
@@ -17,12 +18,15 @@ public class LogIn {
     }*/
 
     public User login(String username, String password) {
+        jdbcWriter.setConnection();
         int id = jdbcWriter.logIn(username, password);
         if (id != -1) {
             User user = new User(id, username, password);
+            System.out.println(user);
             return user;
         } else {
-            return null;
+            User user = new User();
+            return user;
         }
     }
 

@@ -34,6 +34,12 @@ public class MyController {
         System.out.println(user);
         return "ommig";
     }
+    @GetMapping("/profil")
+    public String profil() {
+        String bruger = jdbcWriter.getUser(user.getId());
+        System.out.println(bruger);
+        return "profil";
+    }
 
     @GetMapping("/about")
     public String about() {
@@ -66,7 +72,7 @@ public class MyController {
 
             if (logIn.login(username, password) != null) {
                 user = logIn.login(username, password);
-                return "ommig";
+                return "profil";
             } else {
                 return "index";
             }
