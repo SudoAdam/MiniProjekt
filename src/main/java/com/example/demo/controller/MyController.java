@@ -1,15 +1,15 @@
 package com.example.demo.controller;
 
+import com.example.demo.database.DBManager;
 import com.example.demo.database.JDBCWriter;
-import com.example.demo.user.LogIn;
-import com.example.demo.user.User;
+import com.example.demo.domain.LogIn;
+import com.example.demo.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.sql.SQLOutput;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MyController {
@@ -19,9 +19,9 @@ public class MyController {
 
 
     @GetMapping("/")
+    @ResponseBody
     public String index() {
-        jdbcWriter.setConnection();
-        return "index";
+       return DBManager.getConnection().toString();
     }
 
     @GetMapping("/search")
