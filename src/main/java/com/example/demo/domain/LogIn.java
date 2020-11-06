@@ -1,6 +1,9 @@
 package com.example.demo.domain;
 
+import com.example.demo.database.DBManager;
 import com.example.demo.database.JDBCWriter;
+
+import java.sql.Connection;
 
 public class LogIn {
 
@@ -16,7 +19,7 @@ public class LogIn {
     }*/
 
     public User login(String username, String password) {
-        jdbcWriter.setConnection();
+        Connection connection = DBManager.getConnection();
         int id = jdbcWriter.logIn(username, password);
         if (id != -1) {
             User user = new User(id, username, password);
