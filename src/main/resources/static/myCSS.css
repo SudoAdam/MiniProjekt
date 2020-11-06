@@ -76,7 +76,6 @@ input[type=submit]:hover {
 .header {
     overflow: hidden;
     background-color: #333;
-    padding: 20px 10px;
     border-radius: 10px;
 }
 
@@ -102,10 +101,7 @@ input[type=submit]:hover {
 
 .header-right {
     float: right;
-}
-
-.nav{
-    margin: 0;
+    margin: 15px 0px 0px 0px;
 }
 
 .nav li{
@@ -157,6 +153,12 @@ input[type=submit]:hover {
 
 .div_text {
     margin: auto;
+}
+
+.header img{
+    width: 80px;
+    height: 80px;
+    margin: 0px;
 }
 
 
