@@ -21,7 +21,8 @@ public class MyController {
     @GetMapping("/")
     @ResponseBody
     public String index() {
-       return DBManager.getConnection().toString();
+        DBManager.getConnection();
+       return "index";
     }
 
     @GetMapping("/search")
