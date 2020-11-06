@@ -42,7 +42,7 @@ public class JDBCWriter {
     }
 
     public String getUser(int id) {
-        String seachStr = "SELECT * FROM users where id = ? ";
+        String seachStr = "SELECT * FROM users where user_id = ? ";
         PreparedStatement preparedStatement;
         String bruger = "";
         try {
@@ -51,7 +51,7 @@ public class JDBCWriter {
             System.out.println(seachStr);
             ResultSet resset = preparedStatement.executeQuery();
             while (resset.next()) {
-                String str1 = "" + resset.getObject("line");
+                String str1 = "" + resset.getObject(1);
                 bruger += str1;
             }
         } catch (SQLException sqlerr) {
