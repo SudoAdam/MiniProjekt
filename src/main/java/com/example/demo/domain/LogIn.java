@@ -19,7 +19,6 @@ public class LogIn {
     }*/
 
     public User login(String username, String password) {
-        Connection connection = DBManager.getConnection();
         int id = jdbcWriter.logIn(username, password);
         if (id != -1) {
             User user = new User(id, username, password);
