@@ -29,11 +29,6 @@ public class MyController {
         return "search";
     }
 
-    @GetMapping("/ommig")
-    public String ommig() {
-        System.out.println(user);
-        return "ommig";
-    }
     @GetMapping("/profil")
     public String profil() {
         String bruger = jdbcWriter.getUser(user.getId());
