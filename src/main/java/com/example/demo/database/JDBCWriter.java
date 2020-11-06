@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class JDBCWriter {
 
-    private Connection connection = null;
+    private Connection connection;
 
     public boolean setConnection() {
         final String url = "jdbc:mysql://localhost:3306/userdb?serverTimezone=UTC";
@@ -18,7 +18,6 @@ public class JDBCWriter {
         } catch (SQLException ioerr) {
             System.out.println("Vi fik IKKE connection=" + ioerr.getMessage());
         }
-
         return bres;
     }
 
@@ -42,12 +41,31 @@ public class JDBCWriter {
         return v1;
     }
 
+    public String getUser(int id) {
+        String seachStr = "SELECT * FROM users where id = ? ";
+        PreparedStatement preparedStatement;
+        String bruger = "";
+        try {
+            preparedStatement = connection.prepareStatement(seachStr);
+            preparedStatement.setString(1, "%" + id + "%");
+            System.out.println(seachStr);
+            ResultSet resset = preparedStatement.executeQuery();
+            while (resset.next()) {
+                String str1 = "" + resset.getObject("line");
+                bruger += str1;
+            }
+        } catch (SQLException sqlerr) {
+            System.out.println("Error in select = " + sqlerr.getMessage());
+        }
+        return bruger;
+    }
+
     public int logIn(String user, String pass) {
-        String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ?";
+        String searchStr = "SELECT count(*) as line, user_id FROM users where username like ? and password like ?";
         PreparedStatement preparedStatement;
         int res = -1;
         int id = -1;
-        ResultSet resset = null;
+        ResultSet resset;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
             preparedStatement.setString(1, "%" + user + "%");
