@@ -1,7 +1,5 @@
-package com.example.demo.user;
+package com.example.demo.domain;
 
-import com.example.demo.controller.MyController;
-import com.example.demo.database.Database;
 import com.example.demo.database.JDBCWriter;
 
 public class LogIn {
