@@ -74,6 +74,7 @@ public class JDBCWriter {
             preparedStatement.setString(2, "'" + pass + "'");
             System.out.println(searchStr);
             resset = preparedStatement.executeQuery();
+            System.out.println("Test - så langt så godt");
             if (resset.next()) {
                 String str = "" + resset.getObject(1);
                 res = Integer.parseInt(str);
