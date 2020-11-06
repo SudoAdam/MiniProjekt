@@ -19,7 +19,7 @@ public class MyController {
 
 
     @GetMapping("/")
-    @ResponseBody
+    //@ResponseBody
     public String index() {
         DBManager.getConnection();
        return "index";

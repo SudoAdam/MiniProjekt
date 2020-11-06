@@ -63,18 +63,18 @@ public class JDBCWriter {
 
     public int logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
-        String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ?";
+        String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ? ;";
         PreparedStatement preparedStatement;
         int res = -1;
         int id = -1;
         ResultSet resset;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
-            preparedStatement.setString(1, "'" + user + "'");
-            preparedStatement.setString(2, "'" + pass + "'");
+            preparedStatement.setString(1,   user );
+            preparedStatement.setString(2,   pass );
             System.out.println(searchStr);
+            System.out.println(preparedStatement);
             resset = preparedStatement.executeQuery();
-            System.out.println("Test - så langt så godt");
             if (resset.next()) {
                 String str = "" + resset.getObject(1);
                 res = Integer.parseInt(str);
