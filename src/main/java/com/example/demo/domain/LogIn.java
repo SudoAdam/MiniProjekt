@@ -1,9 +1,6 @@
 package com.example.demo.domain;
 
-import com.example.demo.database.DBManager;
 import com.example.demo.database.JDBCWriter;
-
-import java.sql.Connection;
 
 public class LogIn {
 
@@ -31,6 +28,5 @@ public class LogIn {
     }
 
     public void create(String username, String password) {
-
     }
 }

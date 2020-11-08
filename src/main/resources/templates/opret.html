@@ -6,7 +6,18 @@
 </head>
 <th:block th:include="/includes/header :: header"></th:block>
 <body>
-<div class="div_text">
+<div class="container">
+    <form action="/createUserP" method="post">
+    <h3>
+        Brugernavn:
+    </h3>
+    <input type="text" name="username">
+
+    <h3>
+        Password:
+    </h3>
+    <input type="password" name="password">
+
     <h3>
         Navn:
     </h3>
@@ -18,9 +29,9 @@
     <input type="text" name="surname"> <p>
 
     <h3>
-        By:
+        Region:
     </h3>
-    <input type="text" name="town"> <p>
+    <input type="text" name="region"> <p>
 
     <h3>
         Alder:
@@ -30,13 +41,18 @@
     <h3>
         Skriv lidt om dig selv:
     </h3>
-    <input type="text" name="about"><br>
+    <input type="text" name="about">
+
+    <h3>
+        Dato for test af Corona:
+    </h3>
+    <input type="date" name="date">
     <br>
     <br>
 
     <input type="submit" value="Opret bruger">
+    </form>
 </div>
-
 </body>
 <th:block th:include="/includes/footer :: footer"></th:block>
 </html>

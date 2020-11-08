@@ -1,6 +1,9 @@
 package com.example.demo.database;
 
+import com.example.demo.domain.User;
+
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -61,6 +64,28 @@ public class JDBCWriter {
         return bruger;
     }
 
+    public void createUser(User u){
+        Connection connection = DBManager.getConnection();
+        String sqlstr = "INSERT INTO users (username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement preparedStatement;
+        try{
+            preparedStatement = connection.prepareStatement(sqlstr);
+            preparedStatement.setString(1, u.getUsername());
+            preparedStatement.setString(2, u.getPassword());
+            preparedStatement.setString(3, u.getName());
+            preparedStatement.setString(4, u.getSurname());
+            preparedStatement.setString(5, u.getRegion());
+            preparedStatement.setInt(6, u.getAge());
+            preparedStatement.setString(7, u.getAbout());
+            preparedStatement.setTimestamp(8, (Timestamp) u.getDate());
+            int row = preparedStatement.executeUpdate();
+            System.out.println(row);
+            System.out.println(preparedStatement);
+        } catch (SQLException sqlerr) {
+            System.out.println("Fejl i oprettels=" + sqlerr);
+        }
+    }
+
     public int logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
         String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ? ;";
@@ -93,6 +118,7 @@ public class JDBCWriter {
 
         return id;
     }
+
 
 /*    public int deleteRows(String aURL, String aWord) {
         String delStr = "DELETE FROM urlreads where url like ? and line like ?";

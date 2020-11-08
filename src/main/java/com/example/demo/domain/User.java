@@ -1,10 +1,20 @@
 package com.example.demo.domain;
 
-public class User {
-    int id;
-    String name;
-    String password; // til intern test
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
+
+public class User {
+    private int id;
+    private String username;
+    private String password; // til intern test
+    private String name;
+    private String surname;
+    private String region;
+    private int age;
+    private String about;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
 
     public User(int id, String name, String password) {
         this.id = id;
@@ -12,7 +22,66 @@ public class User {
         this.password = password;
     }
 
-    public User() {
+    public User(String username, String password, String name, String surname, String region, int age, String about) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.region = region;
+        this.age = age;
+        this.about = about;
+        // this.date = date;
+    }
+
+    public User(){
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public int getId() {
