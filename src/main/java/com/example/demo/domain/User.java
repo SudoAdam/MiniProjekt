@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class User {
-    private int id;
+    private static int id = -1;
     private String username;
     private String password; // til intern test
     private String name;
@@ -84,7 +84,7 @@ public class User {
         this.age = age;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
