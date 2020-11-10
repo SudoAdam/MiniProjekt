@@ -13,15 +13,17 @@ public class DBSearch {
         Connection connection = DBManager.getConnection();
         String id = "" + User.getId();
 
-        String searchStr = "SELECT username, age FROM users where ? not user_id = ?";
+        String searchStr = "SELECT username, age FROM users where ";
+        searchStr += seachStatement;
+        searchStr += " not user_id = ?";
         // select username from users where not user_id ='13'
         PreparedStatement preparedStatement;
         int res = -1;
         ResultSet resset;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
-            preparedStatement.setString(1, seachStatement);
-            preparedStatement.setString(2, id);
+           // preparedStatement.setString(1, seachStatement);
+            preparedStatement.setString(1, id);
             System.out.println(searchStr);
             System.out.println(preparedStatement);
             resset = preparedStatement.executeQuery();

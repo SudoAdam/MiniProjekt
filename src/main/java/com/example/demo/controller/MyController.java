@@ -19,6 +19,7 @@ public class MyController {
     User user = new User();
     JDBCWriter jdbcWriter = new JDBCWriter();
     DBSearch dbSearch = new DBSearch();
+    Search search = new Search();
 
 
     @GetMapping("/")
@@ -31,6 +32,7 @@ public class MyController {
     @GetMapping("/search")
     public String search() {
         //dbSearch.search("");
+
         return "search";
     }
 
@@ -116,10 +118,10 @@ public class MyController {
 
     @PostMapping("/SearchResult")
     public String Result(
-            @RequestParam String age,
-            @RequestParam String region) {
+            @RequestParam String age) {
+        System.out.println(age);
         Search search = new Search();
-        search.writeStatement("",age,region,"");
+        search.writeStatement("",age,"","");
         return "/";
     }
 }

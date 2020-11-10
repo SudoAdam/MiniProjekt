@@ -14,10 +14,10 @@ public void writeStatement(String gender, String age, String region, String sex)
     String statement = "";
 
     if (age != ""){
-        statement += ("age = '" + age + "' ,");
+        statement += ("age = '" + age + "' and");
     }
     if (region != ""){
-        statement += ("region like %" + region + "% ,");
+        statement += ("region like %" + region + "% and");
     }
 
     dbSearch.search(statement);
