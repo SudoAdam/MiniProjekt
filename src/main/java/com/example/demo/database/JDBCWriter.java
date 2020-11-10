@@ -45,7 +45,7 @@ public class JDBCWriter {
     }*/
 
     public String getUser(int id) {
-       Connection connection = DBManager.getConnection();
+        Connection connection = DBManager.getConnection();
         String seachStr = "SELECT * FROM users where user_id = ? ";
         PreparedStatement preparedStatement;
         String bruger = "";

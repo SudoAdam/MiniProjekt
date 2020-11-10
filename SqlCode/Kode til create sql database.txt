@@ -21,12 +21,13 @@ USE `userdb` ;
 -- Table `userdb`.`gender`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `userdb`.`gender` (
-  `id_gender` TINYINT NOT NULL,
+  `id_gender` TINYINT NOT NULL AUTO_INCREMENT,
   `gender` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_gender`),
   UNIQUE INDEX `gender_UNIQUE` (`gender` ASC) VISIBLE,
   UNIQUE INDEX `id_gender_UNIQUE` (`id_gender` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -50,12 +51,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `userdb`.`religion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `userdb`.`religion` (
-  `id_religion` TINYINT NOT NULL,
+  `id_religion` TINYINT NOT NULL AUTO_INCREMENT,
   `religion` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_religion`),
   UNIQUE INDEX `religion_UNIQUE` (`religion` ASC) VISIBLE,
   UNIQUE INDEX `id_religion_UNIQUE` (`id_religion` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -70,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `userdb`.`sexuality` (
   UNIQUE INDEX `sexualitet_UNIQUE` (`sexuality` ASC) VISIBLE,
   UNIQUE INDEX `id_sexualitet_UNIQUE` (`id_sexualitet` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -83,30 +86,15 @@ CREATE TABLE IF NOT EXISTS `userdb`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `name` VARCHAR(50) NULL DEFAULT NULL,
   `surname` VARCHAR(150) NULL DEFAULT NULL,
-  `town` VARCHAR(50) NULL DEFAULT NULL,
+  `region` VARCHAR(50) NULL DEFAULT NULL,
   `age` INT NULL DEFAULT NULL,
   `about` VARCHAR(2500) NULL DEFAULT NULL,
   `date_for_test` DATE NULL DEFAULT NULL,
-  `sexualitet_id_sexualitet` TINYINT NULL DEFAULT NULL,
-  `gender_id_gender` TINYINT NULL DEFAULT NULL,
-  `religion_id_religion` TINYINT NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `id_UNIQUE` (`user_id` ASC) VISIBLE,
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
-  INDEX `fk_users_sexualitet_idx` (`sexualitet_id_sexualitet` ASC) VISIBLE,
-  INDEX `fk_users_gender1_idx` (`gender_id_gender` ASC) VISIBLE,
-  INDEX `fk_users_religion1_idx` (`religion_id_religion` ASC) VISIBLE,
-  CONSTRAINT `fk_users_gender1`
-    FOREIGN KEY (`gender_id_gender`)
-    REFERENCES `userdb`.`gender` (`id_gender`),
-  CONSTRAINT `fk_users_religion1`
-    FOREIGN KEY (`religion_id_religion`)
-    REFERENCES `userdb`.`religion` (`id_religion`),
-  CONSTRAINT `fk_users_sexualitet`
-    FOREIGN KEY (`sexualitet_id_sexualitet`)
-    REFERENCES `userdb`.`sexuality` (`id_sexualitet`))
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
