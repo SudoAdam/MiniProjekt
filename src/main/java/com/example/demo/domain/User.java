@@ -33,16 +33,7 @@ public class User {
         // this.date = date;
     }
 
-    public User(int id, String username, String name, String surname, String region, int age, String about) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.surname = surname;
-        this.region = region;
-        this.age = age;
-        this.about = about;
-        // this.date = date;
-    }
+
 
     public User(){
     }

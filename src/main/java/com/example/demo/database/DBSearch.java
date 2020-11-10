@@ -1,5 +1,6 @@
 package com.example.demo.database;
 
+import com.example.demo.domain.ResultUsers;
 import com.example.demo.domain.User;
 
 import java.sql.Connection;
@@ -10,10 +11,10 @@ import java.util.ArrayList;
 
 public class DBSearch {
 
-    public ArrayList<User> search(String seachStatement) {
+    public ArrayList<ResultUsers> search(String seachStatement) {
         Connection connection = DBManager.getConnection();
         String id = "" + User.getId();
-        ArrayList<User> result = new ArrayList<>();
+        ArrayList<ResultUsers> result = new ArrayList<>();
 
         String searchStr = "SELECT user_id, username, age , name, surname, region, about FROM users where ";
         searchStr += seachStatement;
@@ -48,10 +49,13 @@ public class DBSearch {
                 String resultRegion = ""+ resset.getObject(6);
                 String resultAbout = ""+ resset.getObject(7);
 
+                System.out.println(resultID);
                 int resultIntId = Integer.parseInt(resultID);
+                System.out.println(resultIntId);
                 int resultIntAge =  Integer.parseInt(resultAge);
-                User user = new User(resultIntId, resultUsername, resultName, resultSurname,
+                ResultUsers user = new ResultUsers(resultIntId, resultUsername, resultName, resultSurname,
                                         resultRegion, resultIntAge, resultAbout);
+                System.out.println(user);
                 result.add(user);
                 //res = Integer.parseInt(str);
             }
