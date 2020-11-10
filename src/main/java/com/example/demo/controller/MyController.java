@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.database.DBManager;
+import com.example.demo.database.DBSearch;
 import com.example.demo.database.JDBCWriter;
 import com.example.demo.domain.LogIn;
 import com.example.demo.domain.User;
+import com.example.demo.services.Search;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ public class MyController {
     LogIn logIn = new LogIn();
     User user = new User();
     JDBCWriter jdbcWriter = new JDBCWriter();
+    DBSearch dbSearch = new DBSearch();
 
 
     @GetMapping("/")
@@ -27,6 +30,7 @@ public class MyController {
 
     @GetMapping("/search")
     public String search() {
+        //dbSearch.search("");
         return "search";
     }
 
@@ -107,5 +111,14 @@ public class MyController {
             User u = new User(username, password, name, surname, region, age, about);
             jdbcWriter.createUser(u);
             return "profil";
+    }
+
+    @PostMapping("/SearchResult")
+    public String Result(
+            @RequestParam String age,
+            @RequestParam String region) {
+        Search search = new Search();
+        search.writeStatement("",age,region,"");
+        return "/";
     }
 }
