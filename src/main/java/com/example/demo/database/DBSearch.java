@@ -6,14 +6,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DBSearch {
 
-    public void search(String seachStatement) {
+    public ArrayList<User> search(String seachStatement) {
         Connection connection = DBManager.getConnection();
         String id = "" + User.getId();
+        ArrayList<User> result = new ArrayList<>();
 
-        String searchStr = "SELECT username, age FROM users where ";
+        String searchStr = "SELECT user_id, username, age , name, surname, region, about FROM users where ";
         searchStr += seachStatement;
         searchStr += " not user_id = ?";
         // select username from users where not user_id ='13'
@@ -28,11 +30,29 @@ public class DBSearch {
             System.out.println(preparedStatement);
             resset = preparedStatement.executeQuery();
             String resSTR = "";
-            int i = 0;
             while (resset.next()) {
-                i++;
                 resSTR += resset.getObject(1) + ", ";
-                resSTR += resset.getObject(2) + "\n";
+                resSTR += resset.getObject(2) + ", ";
+                resSTR += resset.getObject(3) + ", ";
+                resSTR += resset.getObject(4) + ", ";
+                resSTR += resset.getObject(5) + ", ";
+                resSTR += resset.getObject(6) + ", ";
+                resSTR += resset.getObject(7) + "\n";
+
+                //user_id, username, age , name, surname, region, about
+                String resultID = "" + resset.getObject(1);
+                String resultUsername = ""+resset.getObject(2);
+                String resultAge = ""+ resset.getObject(3);
+                String resultName = ""+ resset.getObject(4);
+                String resultSurname = ""+ resset.getObject(5);
+                String resultRegion = ""+ resset.getObject(6);
+                String resultAbout = ""+ resset.getObject(7);
+
+                int resultIntId = Integer.parseInt(resultID);
+                int resultIntAge =  Integer.parseInt(resultAge);
+                User user = new User(resultIntId, resultUsername, resultName, resultSurname,
+                                        resultRegion, resultIntAge, resultAbout);
+                result.add(user);
                 //res = Integer.parseInt(str);
             }
             System.out.println("fundet  = " + resSTR);
@@ -41,5 +61,7 @@ public class DBSearch {
                 SQLException sqlerr) {
             System.out.println("fejl i søgning = " + sqlerr.getMessage());
         }
+        System.out.println(result);
+        return result;
     }
 }

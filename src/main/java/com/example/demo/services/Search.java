@@ -20,7 +20,7 @@ public void writeStatement(String gender, String age, String region, String sex)
         statement += ("region like %" + region + "% and");
     }
 
-    dbSearch.search(statement);
+   results = dbSearch.search(statement);
 }
 
 }

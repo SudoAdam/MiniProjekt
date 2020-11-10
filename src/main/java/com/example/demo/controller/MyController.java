@@ -122,6 +122,6 @@ public class MyController {
         System.out.println(age);
         Search search = new Search();
         search.writeStatement("",age,"","");
-        return "/";
+        return "/result";
     }
 }
