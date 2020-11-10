@@ -35,9 +35,10 @@ public class MyController {
     }
 
     @GetMapping("/profil")
-    public String profil() {
+    public String profil(Model model) {
         String bruger = jdbcWriter.getUser(user.getId());
         System.out.println(bruger);
+        model.addAttribute("id",bruger);
         return "profil";
     }
 
