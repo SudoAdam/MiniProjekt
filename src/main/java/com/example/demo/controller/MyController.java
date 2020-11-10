@@ -118,10 +118,11 @@ public class MyController {
 
     @PostMapping("/SearchResult")
     public String Result(
-            @RequestParam String age) {
+            @RequestParam String age,
+            @RequestParam String region) {
         System.out.println(age);
         Search search = new Search();
-        search.writeStatement("",age,"","");
+        search.writeStatement("",age,region,"");
         return "/result";
     }
 }

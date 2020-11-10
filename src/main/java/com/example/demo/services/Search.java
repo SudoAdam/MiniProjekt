@@ -18,7 +18,7 @@ public void writeStatement(String gender, String age, String region, String sex)
         statement += ("age = '" + age + "' and");
     }
     if (region != ""){
-        statement += ("region like %" + region + "% and");
+        statement += ("region like '%" + region + "%' and");
     }
 
    results = dbSearch.search(statement);
