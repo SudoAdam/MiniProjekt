@@ -33,79 +33,92 @@ public class User {
         this .isAdmin = isAdmin;
     }
 
-
-
-
-    public String getAbout() {
-        return about;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
+    public User(String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin) {
+        this.id = id;
         this.username = username;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
+        this.password = password;
+        this.name = name;
         this.surname = surname;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
         this.region = region;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
         this.age = age;
+        this.about = about;
+        this .isAdmin = isAdmin;
+    }
+
+    public User(){
+
     }
 
     public static int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static void setId(int id) {
+        User.id = id;
     }
 
-    public String getName() {
-        return name;
+    public static String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static void setUsername(String username) {
+        User.username = username;
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public static void setPassword(String password) {
+        User.password = password;
+    }
+
+    public static String getName() {
+        return name;
+    }
+
+    public static void setName(String name) {
+        User.name = name;
+    }
+
+    public static String getSurname() {
+        return surname;
+    }
+
+    public static void setSurname(String surname) {
+        User.surname = surname;
+    }
+
+    public static String getRegion() {
+        return region;
+    }
+
+    public static void setRegion(String region) {
+        User.region = region;
+    }
+
+    public static int getAge() {
+        return age;
+    }
+
+    public static void setAge(int age) {
+        User.age = age;
+    }
+
+    public static String getAbout() {
+        return about;
+    }
+
+    public static void setAbout(String about) {
+        User.about = about;
+    }
+
+    public static Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public static void setIsAdmin(Boolean isAdmin) {
+        User.isAdmin = isAdmin;
     }
 
     @Override

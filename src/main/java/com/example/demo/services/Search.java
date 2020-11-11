@@ -6,7 +6,7 @@ import com.example.demo.domain.User;
 
 import java.util.ArrayList;
 
-public class Search {
+public class    Search {
 
     DBSearch dbSearch = new DBSearch();
     ArrayList<ResultUsers> results = new ArrayList<>();

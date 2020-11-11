@@ -168,11 +168,19 @@ public class MyController {
             ArrayList<User> userList = new ArrayList<>();
             model.addAttribute("user", userList);
             System.out.println("Rasmus kode er god");
-            User u = new User(username, password, name, surname, region, age, about);
+            User u = new User(username, password, name, surname, region, age, about,false);
             jdbcWriter.createUser(u);
             return "profil";
     }
-
+/*
+    @GetMapping("/visProfil")
+    public String profilShow(@PathVariable ArrayList<User> userList, Model model){
+        model.addAttribute("userList", userList);
+        User u = new User(username, password, name, surname, region, age, about);
+        jdbcWriter.createUser(u);
+        return "profil";
+    }
+*/
     @PostMapping("/updateUserP")
     public String updateUser(
             @ModelAttribute User user,
@@ -187,7 +195,7 @@ public class MyController {
             Model modelUpdate) {
             ArrayList<User> userUpList = new ArrayList<>();
             modelUpdate.addAttribute("user", userUpList);
-            User u = new User(username, password, name, surname, region, age, about);
+            User u = new User(username, password, name, surname, region, age, about, false);
             jdbcWriter.updateUser(u);
             return "profil";
         }
