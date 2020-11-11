@@ -87,8 +87,13 @@ public class MyController {
             //log in action
 
             if (logIn.login(username, password) != null) {
-                user = logIn.login(username, password);
-                return "redirect:/visProfil";
+                    user = logIn.login(username, password);
+                    if (User.getIsAdmin()== true){
+                        user = logIn.login(username, password);
+                        return "adminProfil";
+                    }else{
+                    return "redirect:/visProfil";
+                }
             } else {
                 return "index";
             }
