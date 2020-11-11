@@ -1,0 +1,28 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+</head>
+<link rel="stylesheet" href="myCSS.css">
+<th:block th:include="/includes/indexHeader :: header"></th:block>
+<body>
+
+
+<div class="container">
+    <h3 id="header3">LOG IND</h3>
+    <form action="/logIn" method="POST">
+
+        <label for="fname">Brugernavn</label>
+        <input type="text" id="fname" name="username" placeholder="Indtast brugernavn">
+
+        <label for="lname">Kodeord</label>
+        <input type="password" id="lname" name="password" placeholder="Indtaste kodeord">
+
+
+        <!--<textarea id="subject" name="subject" placeholder="Skriv noget om dig selv" style="height:200px"></textarea> -->
+        <button type="submit" name="action" value="1">Log ind</button>
+        <button type="submit" name="action" value="2">Opret mig</button>
+    </form>
+</div>
+
+</body>
+<th:block th:include="/includes/footer :: footer"></th:block>
+</html>
