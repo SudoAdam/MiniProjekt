@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class JDBCWriter {
+    User user = new User();
 
    // private static Connection connection = null;
 
@@ -117,6 +118,14 @@ public class JDBCWriter {
         }
     }
 
+    public boolean isAdmin(User user){
+        if (user.isAdmin() == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public int logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
         String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ? ;";
@@ -149,6 +158,7 @@ public class JDBCWriter {
 
         return id;
     }
+
 
     public Boolean userExist(int id){
         Connection connection = DBManager.getConnection();

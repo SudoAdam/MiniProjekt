@@ -15,6 +15,7 @@ public class User {
     private String about;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+    private boolean isAdmin;
 
     public User(int id, String name, String password) {
         this.id = id;
@@ -22,7 +23,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String username, String password, String name, String surname, String region, int age, String about) {
+    public User(String username, String password, String name, String surname, String region, int age, String about, boolean isAdmin) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -30,10 +31,17 @@ public class User {
         this.region = region;
         this.age = age;
         this.about = about;
-        // this.date = date;
+        this.isAdmin = isAdmin;
     }
 
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 
     public User(){
     }
