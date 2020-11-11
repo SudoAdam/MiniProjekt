@@ -136,6 +136,41 @@ public class JDBCWriter {
         return id;
     }
 
+    public Boolean userExist(int id){
+        Connection connection = DBManager.getConnection();
+        String searchStr = "SELECT count(*) FROM users where user_id = ?";
+        PreparedStatement preparedStatement;
+        int res = -1;
+        String idStr = "" + id;
+        ResultSet resset;
+        Boolean exist = false;
+        try {
+            preparedStatement = connection.prepareStatement(searchStr);
+            preparedStatement.setString(1, idStr);
+            System.out.println(searchStr);
+            System.out.println(preparedStatement);
+            resset = preparedStatement.executeQuery();
+            if (resset.next()) {
+                String str = "" + resset.getObject(1);
+                res = Integer.parseInt(str);
+                System.out.println("fundet antal = " + res);
+            }
+            if (res == 1) {
+                String idOBJ = "" + resset.getObject("user_id");
+                id = Integer.parseInt(idOBJ);
+                exist = true;
+            } else {
+                System.out.println("login fejl. antal fundne profiler: " + res);
+            }
+
+        } catch (SQLException sqlerr) {
+            System.out.println("fejl i søgning = " + sqlerr.getMessage());
+        }
+
+        return exist;
+    }
+
+
 
 /*    public int deleteRows(String aURL, String aWord) {
         String delStr = "DELETE FROM urlreads where url like ? and line like ?";
