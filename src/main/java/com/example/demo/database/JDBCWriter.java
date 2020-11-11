@@ -117,7 +117,7 @@ public class JDBCWriter {
         }
     }
 
-    public int logIn(String user, String pass) {
+    public User logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
         String searchStr = "SELECT count(*) as user_id, username, age , name, surname, region, about FROM users where username = ? and password = ? ;";
         PreparedStatement preparedStatement;
