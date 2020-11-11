@@ -88,7 +88,7 @@ public class MyController {
 
             if (logIn.login(username, password) != null) {
                 user = logIn.login(username, password);
-                return "profil";
+                return "redirect:/visProfil";
             } else {
                 return "index";
             }
@@ -172,15 +172,17 @@ public class MyController {
             jdbcWriter.createUser(u);
             return "profil";
     }
-/*
+
     @GetMapping("/visProfil")
-    public String profilShow(@PathVariable ArrayList<User> userList, Model model){
-        model.addAttribute("userList", userList);
-        User u = new User(username, password, name, surname, region, age, about);
-        jdbcWriter.createUser(u);
+    public String visProfil(Model model){
+            model.addAttribute("name", User.getName());
+            model.addAttribute("surname", User.getSurname());
+            model.addAttribute("region", User.getRegion());
+            model.addAttribute("age", User.getAge());
+            model.addAttribute("about", User.getAbout());
         return "profil";
     }
-*/
+
     @PostMapping("/updateUserP")
     public String updateUser(
             @ModelAttribute User user,
@@ -191,7 +193,6 @@ public class MyController {
             @RequestParam String region,
             @RequestParam int age,
             @RequestParam String about,
-            @RequestParam String date,
             Model modelUpdate) {
             ArrayList<User> userUpList = new ArrayList<>();
             modelUpdate.addAttribute("user", userUpList);

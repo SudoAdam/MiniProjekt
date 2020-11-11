@@ -33,6 +33,15 @@ public class User {
         this .isAdmin = isAdmin;
     }
 
+    public User(String name, String surname, String region, int age, String about, Boolean isAdmin) {
+        this.name = name;
+        this.surname = surname;
+        this.region = region;
+        this.age = age;
+        this.about = about;
+        this .isAdmin = isAdmin;
+    }
+
     public User(String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin) {
         this.id = id;
         this.username = username;

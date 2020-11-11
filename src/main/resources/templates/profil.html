@@ -15,14 +15,15 @@
              <img src="pictures/jelusic.jpg">
          </div>
          <div class="box-text">
-             <h1>(fornavn og efternavn)</h1>
-             <h2>alder:</h2>
-             <h2>køn:</h2>
-             <h2>region:</h2>
-             <h2>seksual orientering:</h2>
-             <h2>corona status:</h2>
+             <h1>Fulde navn:</h1>
+             <p th:text="${name}">Fulde navn</p>
+             <p th:text="${surname}">Efternavn</p>
+             <h2>Region:</h2>
+             <p th:text="${region}">Region</p>
+             <h2>Alder:</h2>
+             <p th:text="${age}">Alder</p>
              <h2>om mig:</h2>
-             <p> "UDFULD OM MIG HER" </p>
+             <p th:text="${about}">Om mig</p>
 
                 <div class="">
              <li><a href="/update">Update profil</a></li>
