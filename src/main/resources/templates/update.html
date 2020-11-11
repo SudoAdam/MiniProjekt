@@ -12,28 +12,20 @@
   <form action="/updateUserP" method="post">
 
     <label for="navn">Fornavn</label>
-    <input type="text" id="navn" name="name"> <p>
+    <input type="text" id="navn" name="name"  th:value="${user.getName()}"> <p>
 
     <label for="efternavn">Efternavn</label>
-    <input type="text" id="efternavn" name="surname"> <p>
-
-    <label for="alder">Alder</label>
-    <input type="text" id="alder" name="age">
+    <input type="text" id="efternavn" name="surname" th:value="${user.getSurname()}"> <p>
 
     <label for="region">Region</label>
-    <input type="text" id="region" name="region"> <p>
+    <input type="text" id="region" name="region" th:value="${user.getRegion()}"> <p>
 
-    <label for="bruger">Brugernavn</label>
-    <input type="text" id="bruger" name="username">
-
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password">
+    <label for="age">Alder</label>
+    <input type="text" id="age" name="age" th:value="${user.getAge()}">
 
     <label for="digselv">Skriv lidt om dig selv</label>
-    <input type="text" id="digselv" name="about">
+    <input type="text" id="digselv" name="about" th:value="${user.getAbout()}">
 
-    <label for="test">Brugernavn</label>
-    <input type="date" id="test" name="date">
     <br>
     <br>
 

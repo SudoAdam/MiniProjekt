@@ -58,6 +58,14 @@ public class User {
 
     }
 
+    public User(String name, String surname, String region, int age, String about){
+        this.name = name;
+        this.surname = surname;
+        this.region = region;
+        this.age = age;
+        this.about = about;
+    }
+
     public static int getId() {
         return id;
     }

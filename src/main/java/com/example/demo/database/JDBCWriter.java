@@ -88,17 +88,18 @@ public class JDBCWriter {
 
     public void updateUser(User u) {
         Connection connection = DBManager.getConnection();
-        String sqlupstr = "UPDATE users SET(email, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE user_id = u;";
+        String sqlupstr = "UPDATE users SET (name, surname, region, age, about) VAlUES (?, ?, ?, ?, ?) WHERE user_id = id;";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlupstr);
-            preparedStatement.setString(1, u.getUsername());
-            preparedStatement.setString(2, u.getPassword());
-            preparedStatement.setString(3, u.getName());
-            preparedStatement.setString(4, u.getSurname());
-            preparedStatement.setString(5, u.getRegion());
-            preparedStatement.setInt(6, u.getAge());
-            preparedStatement.setString(7, u.getAbout());
+            preparedStatement.setString(1, u.getName());
+            preparedStatement.setString(2, u.getSurname());
+            preparedStatement.setString(3, u.getRegion());
+            preparedStatement.setInt(4, u.getAge());
+            preparedStatement.setString(5, u.getAbout());
+            int row = preparedStatement.executeUpdate();
+            System.out.println(row);
+            System.out.println(preparedStatement);
         } catch (SQLException sqlerr) {
             System.out.println("Fejl i opdatering" + sqlerr);
         }
