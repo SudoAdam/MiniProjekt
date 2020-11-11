@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
@@ -94,6 +95,40 @@ public class MyController {
         return "search";
 
     }
+    @PostMapping("/adminLogIn")
+    public String adminLogIn(
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestParam int action,
+            @RequestParam boolean isAdmin,
+            Model model) {
+        //forsøg på at få index formen til både at kunne logge ind og oprette
+        System.out.println("Så langt så godt");
+        int id = -1;
+
+        if (action == 1) {
+            System.out.println("login tried");
+            //log in action
+
+            if (logIn.login(username, password) != null) {
+                user = logIn.login(username, password);
+                return "profil";
+            } else {
+                return "index";
+            }
+
+        } else if (action == 2) {
+            System.out.println("create tried");
+            logIn.create(username, password);
+            return "redirect:/createUserG";
+        } else {
+            System.out.println("der er gået noget galt");
+        }
+
+        System.out.println("id =" + id);
+        return "search";
+
+    }
 
     @GetMapping("/createUserG")
     public String createUser(Model model){
@@ -131,13 +166,13 @@ public class MyController {
             @RequestParam int age,
             @RequestParam String about,
             @RequestParam String date,
-            Model modelUpdate){
-                ArrayList<User> userUpList = new ArrayList<>();
-                modelUpdate.addAttribute("user", userUpList);
-                User u = new User(username, password, name, surname, region, age, about);
-                jdbcWriter.updateUser(u);
-                return "profil";
-    }
+            Model modelUpdate) {
+            ArrayList<User> userUpList = new ArrayList<>();
+            modelUpdate.addAttribute("user", userUpList);
+            User u = new User(username, password, name, surname, region, age, about);
+            jdbcWriter.updateUser(u);
+            return "profil";
+        }
 
     @PostMapping("/SearchResult")
     public String Result(
