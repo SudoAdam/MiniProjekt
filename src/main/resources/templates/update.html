@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="myCSS.css">
+  <title>Opdater profil</title>
+</head>
+<th:block th:include="/includes/header :: header"></th:block>
+<body>
+<div class="container">
+  <h3 id="header3">OPDATER PROFIL</h3>
+  <form action="/updateUserP" method="post">
+
+    <label for="navn">Fornavn</label>
+    <input type="text" id="navn" name="name"> <p>
+
+    <label for="efternavn">Efternavn</label>
+    <input type="text" id="efternavn" name="surname"> <p>
+
+    <label for="alder">Alder</label>
+    <input type="text" id="alder" name="age">
+
+    <label for="region">Region</label>
+    <input type="text" id="region" name="region"> <p>
+
+    <label for="bruger">Brugernavn</label>
+    <input type="text" id="bruger" name="username">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password">
+
+    <label for="digselv">Skriv lidt om dig selv</label>
+    <input type="text" id="digselv" name="about">
+
+    <label for="test">Brugernavn</label>
+    <input type="date" id="test" name="date">
+    <br>
+    <br>
+
+    <input type="submit" value="Opret bruger">
+  </form>
+</div>
+</body>
+<th:block th:include="/includes/footer :: footer"></th:block>
+</html>

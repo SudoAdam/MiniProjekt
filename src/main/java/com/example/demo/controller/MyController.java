@@ -26,7 +26,7 @@ public class MyController {
     //@ResponseBody
     public String index() {
         DBManager.getConnection();
-        return "index";
+       return "index";
     }
 
     @GetMapping("/search")
@@ -40,7 +40,7 @@ public class MyController {
     public String profil(Model model) {
         String bruger = jdbcWriter.getUser(user.getId());
         System.out.println(bruger);
-        model.addAttribute("id", bruger);
+        model.addAttribute("id",bruger);
         return "profil";
     }
 
@@ -52,6 +52,11 @@ public class MyController {
     @GetMapping("/karantæne")
     public String karantæne() {
         return "karantæne";
+    }
+
+    @GetMapping("/update")
+    public String update(){
+        return "update";
     }
 
 
@@ -91,13 +96,32 @@ public class MyController {
     }
 
     @GetMapping("/createUserG")
-    public String createUser(Model model) {
+    public String createUser(Model model){
         model.addAttribute("user", new User());
         return "opret";
     }
 
     @PostMapping("/createUserP")
     public String createUser(
+        @ModelAttribute User user,
+        @RequestParam String username,
+        @RequestParam String password,
+        @RequestParam String name,
+        @RequestParam String surname,
+        @RequestParam String region,
+        @RequestParam int age,
+        @RequestParam String about,
+        Model model){
+            ArrayList<User> userList = new ArrayList<>();
+            model.addAttribute("user", userList);
+            System.out.println("Rasmus kode er god");
+            User u = new User(username, password, name, surname, region, age, about);
+            jdbcWriter.createUser(u);
+            return "profil";
+    }
+
+    @PostMapping("/updateUserP")
+    public String updateUser(
             @ModelAttribute User user,
             @RequestParam String username,
             @RequestParam String password,
@@ -107,13 +131,12 @@ public class MyController {
             @RequestParam int age,
             @RequestParam String about,
             @RequestParam String date,
-            Model model) {
-        ArrayList<User> userList = new ArrayList<>();
-        model.addAttribute("user", userList);
-        System.out.println("Rasmus kode er god");
-        User u = new User(username, password, name, surname, region, age, about);
-        jdbcWriter.createUser(u);
-        return "profil";
+            Model modelUpdate){
+                ArrayList<User> userUpList = new ArrayList<>();
+                modelUpdate.addAttribute("user", userUpList);
+                User u = new User(username, password, name, surname, region, age, about);
+                jdbcWriter.updateUser(u);
+                return "profil";
     }
 
     @PostMapping("/SearchResult")
@@ -122,7 +145,7 @@ public class MyController {
             @RequestParam String region) {
         System.out.println(age);
         Search search = new Search();
-        search.writeStatement("", age, region, "");
+        search.writeStatement("",age,region,"");
         return "/result";
     }
 }
