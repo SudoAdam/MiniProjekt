@@ -103,6 +103,20 @@ public class JDBCWriter {
         }
     }
 
+    public void removeUser(int userID){
+        Connection connection = DBManager.getConnection();
+        String sqlRemove = "DELETE * FROM users WHERE user_id = ?";
+        PreparedStatement preparedStatement;
+        String userIDstr = "" + userID;
+        try{
+            preparedStatement = connection.prepareStatement(sqlRemove);
+            preparedStatement.setString(1,   userIDstr );
+            preparedStatement.execute(sqlRemove);
+        } catch(SQLException sqlerr){
+            System.out.println("Fejl =" + sqlerr);
+        }
+    }
+
     public int logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
         String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ? ;";

@@ -60,6 +60,16 @@ public class MyController {
         return "update";
     }
 
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
+
+    @GetMapping("/adminProfil")
+    public String adminProfil(){
+        return "adminProfil";
+    }
+
 
     //hugget fra gammel projekt !på ingen måde færdigt!
     @PostMapping("/logIn")
@@ -95,6 +105,7 @@ public class MyController {
         return "search";
 
     }
+
     @PostMapping("/adminLogIn")
     public String adminLogIn(
             @RequestParam String username,
@@ -111,16 +122,16 @@ public class MyController {
             //log in action
 
             if (logIn.login(username, password) != null) {
-                user = logIn.login(username, password);
-                return "profil";
+                if(isAdmin == true) {
+                    user = logIn.login(username, password);
+                    return "adminProfil";
+                } else {
+                    System.out.println("You're not an admin");
+                }
             } else {
                 return "index";
             }
 
-        } else if (action == 2) {
-            System.out.println("create tried");
-            logIn.create(username, password);
-            return "redirect:/createUserG";
         } else {
             System.out.println("der er gået noget galt");
         }
@@ -128,6 +139,13 @@ public class MyController {
         System.out.println("id =" + id);
         return "search";
 
+    }
+    @GetMapping("/removeUser")
+    public String removeUser(
+            @RequestParam int removeUser,
+            Model model){
+        jdbcWriter.removeUser(removeUser);
+        return "adminProfil";
     }
 
     @GetMapping("/createUserG")
