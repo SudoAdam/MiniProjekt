@@ -14,7 +14,7 @@ public class adminLogIn {
             exsist = true;
         return exsist;
     }*/
-
+/*
     public User login(String username, String password, boolean isAdmin) {
         int id = jdbcWriter.logIn(username, password);
         if (id != -1 && isAdmin == true) {
@@ -25,11 +25,11 @@ public class adminLogIn {
             User user = new User();
             return user;
         }
-    }
-
+    }*/
+/*
     public void create(String username, String password) {
     }
     public void logout(){
         User user = new User(-1,"","");
-    }
+    }*/
 }
