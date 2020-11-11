@@ -67,7 +67,7 @@ public class JDBCWriter {
 
     public void createUser(User u) {
         Connection connection = DBManager.getConnection();
-        String sqlstr = "INSERT INTO users (username, password, name, surname, region, age, about) VAlUES (?, ?, ?, ?, ?, ?, ?);";
+        String sqlstr = "INSERT INTO users (email, password, name, surname, region, age, about) VAlUES (?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlstr);
@@ -88,7 +88,7 @@ public class JDBCWriter {
 
     public void updateUser(User u) {
         Connection connection = DBManager.getConnection();
-        String sqlupstr = "UPDATE users SET(username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE user_id = u;";
+        String sqlupstr = "UPDATE users SET(email, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE user_id = u;";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlupstr);
@@ -120,9 +120,9 @@ public class JDBCWriter {
 
     public User logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
-        String searchStr = "SELECT count(*) as user_id, username, age , name, surname, region, about FROM users where username = ? and password = ? ;";
+        String searchStr = "SELECT count(*) as user_id, email, age , name, surname, region, about, is_admin FROM users where username = ? and password = ? ;";
         PreparedStatement preparedStatement;
-        User u = new user();
+        User u = new User();
         int res = -1;
         ResultSet resset;
         try {
@@ -150,6 +150,8 @@ public class JDBCWriter {
                 int idN = Integer.parseInt(id);
                 int ageN = Integer.parseInt(age);
                 Boolean isAdmin = false;
+
+                System.out.println("vores id er = " + idN + " og som string " + id);
 
                 if (is_admin.equals("1")){
                     isAdmin = true;

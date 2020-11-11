@@ -25,6 +25,7 @@ public class LogIn {
     }
 
     public void logout() {
-        User user = new User(-1, "", "");
+        User user = new User();
+        System.out.println(user);
     }
 }
