@@ -122,6 +122,7 @@ public class JDBCWriter {
         Connection connection = DBManager.getConnection();
         String searchStr = "SELECT count(*) as user_id, username, age , name, surname, region, about FROM users where username = ? and password = ? ;";
         PreparedStatement preparedStatement;
+        User u = new user();
         int res = -1;
         ResultSet resset;
         try {
@@ -148,10 +149,12 @@ public class JDBCWriter {
 
                 int idN = Integer.parseInt(id);
                 int ageN = Integer.parseInt(age);
+                Boolean isAdmin = false;
 
-                if (is_admin == 0)
-
-                User u = new User(0, username,pass,name,surname,region,0,about,false);
+                if (is_admin.equals("1")){
+                    isAdmin = true;
+                }
+                u = new User(idN, username,pass,name,surname,region, ageN,about,isAdmin);
             } else {
                 System.out.println("login fejl. antal fundne profiler: " + res);
             }
@@ -160,7 +163,7 @@ public class JDBCWriter {
             System.out.println("fejl i søgning = " + sqlerr.getMessage());
         }
 
-
+        return u;
     }
 
     public Boolean userExist(int id) {
