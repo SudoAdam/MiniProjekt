@@ -156,15 +156,13 @@ public class JDBCWriter {
                 System.out.println("fundet antal = " + res);
             }
             if (res == 1) {
-                String idOBJ = "" + resset.getObject("user_id");
-                id = Integer.parseInt(idOBJ);
                 exist = true;
             } else {
-                System.out.println("login fejl. antal fundne profiler: " + res);
+                System.out.println("fejl. antal fundne profiler: " + res);
             }
 
         } catch (SQLException sqlerr) {
-            System.out.println("fejl i søgning = " + sqlerr.getMessage());
+            System.out.println("fejl i exist = " + sqlerr.getMessage());
         }
 
         return exist;
