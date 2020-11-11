@@ -86,6 +86,22 @@ public class JDBCWriter {
         }
     }
 
+    /*public void updateUser(User u){
+        Connection connection = DBManager.getConnection();
+        String sqlstr = "UPDATE users (username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement preparedStatement;
+        try{
+            preparedStatement = connection.prepareStatement(sqlstr);
+            preparedStatement.setString(1, u.getUsername());
+            preparedStatement.setString(2, u.getPassword());
+            preparedStatement.setString(3, u.getName());
+            preparedStatement.setString(4, u.getSurname());
+            preparedStatement.setString(5, u.getRegion());
+            preparedStatement.setInt(6, u.getAge());
+            preparedStatement.setString(7, u.getAbout());
+        }
+    }*/
+
     public int logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
         String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ? ;";

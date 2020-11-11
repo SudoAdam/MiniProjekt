@@ -116,6 +116,21 @@ public class MyController {
             return "profil";
     }
 
+    /*@PostMapping("/updateUserP")
+    public String updateUser(
+            @ModelAttribute User user,
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestParam String name,
+            @RequestParam String surname,
+            @RequestParam String region,
+            @RequestParam int age,
+            @RequestParam String about,
+            @RequestParam String date,
+            Model modelUpdate){
+
+    }*/
+
     @PostMapping("/SearchResult")
     public String Result(
             @RequestParam String age,
