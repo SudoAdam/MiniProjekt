@@ -120,9 +120,9 @@ public class JDBCWriter {
 
     public User logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
-        String searchStr = "SELECT count(*) as user_id, username, age , name, surname, region, about FROM users where username = ? and password = ? ;";
+        String searchStr = "SELECT count(*) as user_id, username, age , name, surname, region, about, is_admin FROM users where username = ? and password = ? ;";
         PreparedStatement preparedStatement;
-        User u = new user();
+        User u = new User();
         int res = -1;
         ResultSet resset;
         try {
