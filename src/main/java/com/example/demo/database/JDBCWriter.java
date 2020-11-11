@@ -85,12 +85,12 @@ public class JDBCWriter {
         }
     }
 
-    /*public void updateUser(User u){
+    public void updateUser(User u){
         Connection connection = DBManager.getConnection();
-        String sqlstr = "UPDATE users (username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String sqlupstr = "UPDATE users SET(username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement;
         try{
-            preparedStatement = connection.prepareStatement(sqlstr);
+            preparedStatement = connection.prepareStatement(sqlupstr);
             preparedStatement.setString(1, u.getUsername());
             preparedStatement.setString(2, u.getPassword());
             preparedStatement.setString(3, u.getName());
@@ -98,8 +98,10 @@ public class JDBCWriter {
             preparedStatement.setString(5, u.getRegion());
             preparedStatement.setInt(6, u.getAge());
             preparedStatement.setString(7, u.getAbout());
+        } catch (SQLException sqlerr){
+            System.out.println("Fejl i opdatering"+ sqlerr);
         }
-    }*/
+    }
 
     public int logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();

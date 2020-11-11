@@ -54,6 +54,11 @@ public class MyController {
         return "karantæne";
     }
 
+    @GetMapping("/update")
+    public String update(){
+        return "update";
+    }
+
 
     //hugget fra gammel projekt !på ingen måde færdigt!
     @PostMapping("/logIn")
@@ -115,7 +120,7 @@ public class MyController {
             return "profil";
     }
 
-    /*@PostMapping("/updateUserP")
+    @PostMapping("/updateUserP")
     public String updateUser(
             @ModelAttribute User user,
             @RequestParam String username,
@@ -127,8 +132,12 @@ public class MyController {
             @RequestParam String about,
             @RequestParam String date,
             Model modelUpdate){
-
-    }*/
+                ArrayList<User> userUpList = new ArrayList<>();
+                modelUpdate.addAttribute("user", userUpList);
+                User u = new User(username, password, name, surname, region, age, about);
+                jdbcWriter.updateUser(u);
+                return "profil";
+    }
 
     @PostMapping("/SearchResult")
     public String Result(
