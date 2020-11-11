@@ -66,10 +66,7 @@ public class MyController {
     }
 
     @GetMapping("/adminProfil")
-    public String adminProfil(Model model){
-        String bruger = jdbcWriter.getUser(user.getId());
-        System.out.println(bruger);
-        model.addAttribute("id",bruger);
+    public String adminProfil(){
         return "adminProfil";
     }
 
@@ -91,7 +88,7 @@ public class MyController {
 
             if (logIn.login(username, password) != null) {
                 user = logIn.login(username, password);
-                return "profil";
+                return "redirect:/visProfil";
             } else {
                 return "index";
             }
@@ -124,7 +121,7 @@ public class MyController {
             System.out.println("login tried");
             //log in action
 
-            if(logIn.login(username, password) != null) {
+            if (logIn.login(username, password) != null) {
                 if(isAdmin == true) {
                     user = logIn.login(username, password);
                     return "adminProfil";
@@ -167,14 +164,23 @@ public class MyController {
         @RequestParam String region,
         @RequestParam int age,
         @RequestParam String about,
-        @RequestParam boolean isAdmin,
         Model model){
             ArrayList<User> userList = new ArrayList<>();
             model.addAttribute("user", userList);
             System.out.println("Rasmus kode er god");
-            User u = new User(username, password, name, surname, region, age, about, isAdmin);
+            User u = new User(username, password, name, surname, region, age, about,false);
             jdbcWriter.createUser(u);
             return "profil";
+    }
+
+    @GetMapping("/visProfil")
+    public String visProfil(Model model){
+            model.addAttribute("name", User.getName());
+            model.addAttribute("surname", User.getSurname());
+            model.addAttribute("region", User.getRegion());
+            model.addAttribute("age", User.getAge());
+            model.addAttribute("about", User.getAbout());
+        return "profil";
     }
 
     @PostMapping("/updateUserP")
@@ -187,12 +193,10 @@ public class MyController {
             @RequestParam String region,
             @RequestParam int age,
             @RequestParam String about,
-            @RequestParam String date,
-            @RequestParam boolean isAdmin,
             Model modelUpdate) {
             ArrayList<User> userUpList = new ArrayList<>();
             modelUpdate.addAttribute("user", userUpList);
-            User u = new User(username, password, name, surname, region, age, about, isAdmin);
+            User u = new User(username, password, name, surname, region, age, about, false);
             jdbcWriter.updateUser(u);
             return "profil";
         }

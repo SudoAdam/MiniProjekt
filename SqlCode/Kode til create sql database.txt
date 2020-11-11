@@ -18,14 +18,43 @@ CREATE SCHEMA IF NOT EXISTS `userdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8m
 USE `userdb` ;
 
 -- -----------------------------------------------------
+-- Table `userdb`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `userdb`.`users` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(50) NULL DEFAULT NULL,
+  `surname` VARCHAR(150) NULL DEFAULT NULL,
+  `region` VARCHAR(50) NULL DEFAULT NULL,
+  `age` INT NULL DEFAULT NULL,
+  `about` VARCHAR(2500) NULL DEFAULT NULL,
+  `is_admin` INT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `id_UNIQUE` (`user_id` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`email` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 19
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `userdb`.`gender`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `userdb`.`gender` (
   `id_gender` TINYINT NOT NULL AUTO_INCREMENT,
   `gender` VARCHAR(45) NOT NULL,
+  `users_user_id` INT NOT NULL,
   PRIMARY KEY (`id_gender`),
   UNIQUE INDEX `gender_UNIQUE` (`gender` ASC) VISIBLE,
-  UNIQUE INDEX `id_gender_UNIQUE` (`id_gender` ASC) VISIBLE)
+  UNIQUE INDEX `id_gender_UNIQUE` (`id_gender` ASC) VISIBLE,
+  INDEX `fk_gender_users_idx` (`users_user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_gender_users`
+    FOREIGN KEY (`users_user_id`)
+    REFERENCES `userdb`.`users` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
@@ -43,58 +72,6 @@ CREATE TABLE IF NOT EXISTS `userdb`.`messages` (
   PRIMARY KEY (`id_messages`),
   UNIQUE INDEX `id_messages_UNIQUE` (`id_messages` ASC) VISIBLE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `userdb`.`religion`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `userdb`.`religion` (
-  `id_religion` TINYINT NOT NULL AUTO_INCREMENT,
-  `religion` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_religion`),
-  UNIQUE INDEX `religion_UNIQUE` (`religion` ASC) VISIBLE,
-  UNIQUE INDEX `id_religion_UNIQUE` (`id_religion` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `userdb`.`sexuality`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `userdb`.`sexuality` (
-  `id_sexualitet` TINYINT NOT NULL AUTO_INCREMENT,
-  `sexuality` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_sexualitet`),
-  UNIQUE INDEX `sexualitet_UNIQUE` (`sexuality` ASC) VISIBLE,
-  UNIQUE INDEX `id_sexualitet_UNIQUE` (`id_sexualitet` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `userdb`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `userdb`.`users` (
-  `user_id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(30) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(50) NULL DEFAULT NULL,
-  `surname` VARCHAR(150) NULL DEFAULT NULL,
-  `region` VARCHAR(50) NULL DEFAULT NULL,
-  `age` INT NULL DEFAULT NULL,
-  `about` VARCHAR(2500) NULL DEFAULT NULL,
-  `date_for_test` DATE NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `id_UNIQUE` (`user_id` ASC) VISIBLE,
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

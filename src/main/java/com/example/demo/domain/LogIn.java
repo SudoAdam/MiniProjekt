@@ -16,20 +16,15 @@ public class LogIn {
     }*/
 
     public User login(String username, String password) {
-        int id = jdbcWriter.logIn(username, password);
-        if (id != -1) {
-            User user = new User(id, username, password);
-            System.out.println(user);
-            return user;
-        } else {
-            User user = new User();
-            return user;
-        }
+        User user = jdbcWriter.logIn(username, password);
+        System.out.println(user);
+        return user;
     }
 
     public void create(String username, String password) {
     }
-    public void logout(){
-        User user = new User(-1,"","");
+
+    public void logout() {
+        User user = new User();
     }
 }
