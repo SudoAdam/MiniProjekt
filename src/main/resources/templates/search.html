@@ -7,23 +7,28 @@
 </head>
 <th:block th:include="/includes/header :: header"></th:block>
 <body>
+<form action="/SearchResult" method="POST">
     <div class="div_text">
         <h3>
-         Ønsket køn
+            Ønsket køn
         </h3>
-        <input type="text" name="gender"> <p>
+        <input type="text" name="gender">
+        <p>
         <h3>
-         Ønsket alder
+            Ønsket alder
         </h3>
-        <input type="text" name="age"> <p>
+        <input type="text" name="age">
+        <p>
         <h3>
-        Ønsket by
+            Ønsket region
         </h3>
-        <input type="text" name="town"> <p>
+        <input type="text" name="region">
+        <p>
         <h3>
-        Ønsket sexualitet
+            Ønsket sexualitet
         </h3>
         <input type="text" name="sexuality">
+        <button type="submit" name="action">Søg</button>
     </div>
 
 </body>

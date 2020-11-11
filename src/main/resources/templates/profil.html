@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="myCSS.css">
-    <th:block th:include="/includes/indexHeader :: header"></th:block>
     <title>Profil</title>
 </head>
+<th:block th:include="/includes/Header :: header"></th:block>
 <body>
-<div style="color: #f2f2f2;">
-
-<h1>(Personens for- og efternavn)</h1>
-    <img src="pictures/jelusic.jpg" width="300px" height="300px"/>
-<p>Region: </p>
-<p>Seksuel orientering:</p>
-<p>Kønsidentitet:</p>
-<p>Religion:</p>
-    <p>Status for Corona:</p>
-<div style="position:relative; bottom:500px; left:500px;"><b><h2>Om mig:</h2></b></div>
-</div>
+ <div class="wrapper">
+     <div class="box">
+         <div class="box-img">
+             <img src="pictures/jelusic.jpg">
+         </div>
+         <div class="box-text">
+             <h1>(fornavn og efternavn)</h1>
+             <h2>alder:</h2>
+             <h2>køn:</h2>
+             <h2>region:</h2>
+             <h2>seksual orientering:</h2>
+             <h2>corona status:</h2>
+             <h2>om mig:</h2>
+             <p> "UDFULD OM MIG HER" </p>
+         </div>
+     </div>
+ </div>
 </body>
 <th:block th:include="/includes/footer :: footer"></th:block>
 </html>

@@ -1,14 +1,17 @@
 package com.example.demo.database;
 
+import com.example.demo.domain.User;
+
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class JDBCWriter {
 
-    private Connection connection;
+   // private static Connection connection = null;
 
-    public boolean setConnection() {
+   /* public boolean setConnection() {
         final String url = "jdbc:mysql://localhost:3306/userdb?serverTimezone=UTC";
         boolean bres = false;
         try {
@@ -19,9 +22,9 @@ public class JDBCWriter {
             System.out.println("Vi fik IKKE connection=" + ioerr.getMessage());
         }
         return bres;
-    }
+    }*/
 
-    public Vector<String> getLines(String aURL, String aWord) {
+   /* public Vector<String> getLines(String aURL, String aWord) {
         String seachStr = "SELECT left(line,50) as line FROM urlreads where url like ? and line like ? LIMIT 20";
         PreparedStatement preparedStatement;
         Vector<String> v1 = new Vector<>();
@@ -39,10 +42,11 @@ public class JDBCWriter {
             System.out.println("Error in select = " + sqlerr.getMessage());
         }
         return v1;
-    }
+    }*/
 
     public String getUser(int id) {
-        String seachStr = "SELECT * FROM users where id = ? ";
+        Connection connection = DBManager.getConnection();
+        String seachStr = "SELECT * FROM users where user_id = ? ";
         PreparedStatement preparedStatement;
         String bruger = "";
         try {
@@ -51,7 +55,7 @@ public class JDBCWriter {
             System.out.println(seachStr);
             ResultSet resset = preparedStatement.executeQuery();
             while (resset.next()) {
-                String str1 = "" + resset.getObject("line");
+                String str1 = "" + resset.getObject(1);
                 bruger += str1;
             }
         } catch (SQLException sqlerr) {
@@ -60,17 +64,41 @@ public class JDBCWriter {
         return bruger;
     }
 
+    public void createUser(User u){
+        Connection connection = DBManager.getConnection();
+        String sqlstr = "INSERT INTO users (username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement preparedStatement;
+        try{
+            preparedStatement = connection.prepareStatement(sqlstr);
+            preparedStatement.setString(1, u.getUsername());
+            preparedStatement.setString(2, u.getPassword());
+            preparedStatement.setString(3, u.getName());
+            preparedStatement.setString(4, u.getSurname());
+            preparedStatement.setString(5, u.getRegion());
+            preparedStatement.setInt(6, u.getAge());
+            preparedStatement.setString(7, u.getAbout());
+            preparedStatement.setTimestamp(8, (Timestamp) u.getDate());
+            int row = preparedStatement.executeUpdate();
+            System.out.println(row);
+            System.out.println(preparedStatement);
+        } catch (SQLException sqlerr) {
+            System.out.println("Fejl i oprettels=" + sqlerr);
+        }
+    }
+
     public int logIn(String user, String pass) {
-        String searchStr = "SELECT count(*) as line, user_id FROM users where username like ? and password like ?";
+        Connection connection = DBManager.getConnection();
+        String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ? ;";
         PreparedStatement preparedStatement;
         int res = -1;
         int id = -1;
         ResultSet resset;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
-            preparedStatement.setString(1, "%" + user + "%");
-            preparedStatement.setString(2, "%" + pass + "%");
+            preparedStatement.setString(1,   user );
+            preparedStatement.setString(2,   pass );
             System.out.println(searchStr);
+            System.out.println(preparedStatement);
             resset = preparedStatement.executeQuery();
             if (resset.next()) {
                 String str = "" + resset.getObject(1);
@@ -91,7 +119,8 @@ public class JDBCWriter {
         return id;
     }
 
-    public int deleteRows(String aURL, String aWord) {
+
+/*    public int deleteRows(String aURL, String aWord) {
         String delStr = "DELETE FROM urlreads where url like ? and line like ?";
         PreparedStatement preparedStatement;
         int res = -1;
@@ -104,9 +133,9 @@ public class JDBCWriter {
             System.out.println("Error in delete =" + sqlerr.getMessage());
         }
         return res;
-    }
+    }*/
 
-    public int writeLines(String aUlr, ArrayList<String> aLst) {
+   /* public int writeLines(String aUlr, ArrayList<String> aLst) {
         String insstr = "INSERT INTO urlreads(url, line, linelen, medtext) values (?, ?, ?, ?)";
         PreparedStatement preparedStatement;
         int res = 0;
@@ -137,6 +166,6 @@ public class JDBCWriter {
             }
         }
         return res;
-    }
+    }*/
 
 }

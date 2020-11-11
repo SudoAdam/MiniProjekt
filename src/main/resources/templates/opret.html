@@ -2,42 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="myCSS.css">
     <title>Title</title>
 </head>
 <th:block th:include="/includes/header :: header"></th:block>
 <body>
-<div class="div_text">
-    <h1></h1>
-    <h3>
-        Navn:
-    </h3>
-    <input type="text" name="name" placeholder="Navn"> <p>
+<div class="container">
+    <h3 id="header3">OPRET PROFIL</h3>
+    <form action="/createUserP" method="post">
 
-    <h3>
-        Efternavn:
-    </h3>
-    <input type="text" name="surname" placeholder="Efternavn"> <p>
+        <label for="navn">Fornavn</label>
+        <input type="text" id="navn" name="name"> <p>
 
-    <h3>
-        Region:
-    </h3>
-    <input type="text" name="town" placeholder="Region"> <p>
+        <label for="efternavn">Efternavn</label>
+        <input type="text" id="efternavn" name="surname"> <p>
 
-    <h3>
-        Alder:
-    </h3>
-    <input type="text" name="age" placeholder="Alder">
+        <label for="alder">Alder</label>
+        <input type="text" id="alder" name="age">
 
-    <h3>
-        Skriv lidt om dig selv:
-    </h3>
-    <input type="text" name="about" placeholder="Om mig..."><br>
-    <br>
-    <br>
+        <label for="region">Region</label>
+        <input type="text" id="region" name="region"> <p>
+
+        <label for="bruger">Brugernavn</label>
+        <input type="text" id="bruger" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+
+        <label for="digselv">Skriv lidt om dig selv</label>
+        <input type="text" id="digselv" name="about">
+
+        <label for="test">Brugernavn</label>
+        <input type="date" id="test" name="date">
+        <br>
+        <br>
 
     <input type="submit" value="Opret bruger">
+    </form>
 </div>
-
 </body>
 <th:block th:include="/includes/footer :: footer"></th:block>
 </html>

@@ -1,43 +1,46 @@
 package com.example.demo.controller;
 
+import com.example.demo.database.DBManager;
+import com.example.demo.database.DBSearch;
 import com.example.demo.database.JDBCWriter;
-import com.example.demo.user.LogIn;
-import com.example.demo.user.User;
+import com.example.demo.domain.LogIn;
+import com.example.demo.domain.User;
+import com.example.demo.services.Search;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 @Controller
 public class MyController {
+
     LogIn logIn = new LogIn();
     User user = new User();
     JDBCWriter jdbcWriter = new JDBCWriter();
+    DBSearch dbSearch = new DBSearch();
+    Search search = new Search();
 
 
     @GetMapping("/")
+    //@ResponseBody
     public String index() {
-        jdbcWriter.setConnection();
-        return "index";
+        DBManager.getConnection();
+       return "index";
     }
 
     @GetMapping("/search")
     public String search() {
+        //dbSearch.search("");
+
         return "search";
     }
 
-    @GetMapping("/ommig")
-    public String ommig() {
-        System.out.println(user);
-        return "ommig";
-    }
     @GetMapping("/profil")
-    public String profil() {
+    public String profil(Model model) {
         String bruger = jdbcWriter.getUser(user.getId());
         System.out.println(bruger);
+        model.addAttribute("id",bruger);
         return "profil";
     }
 
@@ -50,9 +53,6 @@ public class MyController {
     public String karantæne() {
         return "karantæne";
     }
-
-    @GetMapping("/profil")
-    public String profil(){return "profil";}
 
 
     //hugget fra gammel projekt !på ingen måde færdigt!
@@ -80,7 +80,7 @@ public class MyController {
         } else if (action == 2) {
             System.out.println("create tried");
             logIn.create(username, password);
-
+            return "redirect:/createUserG";
         } else {
             System.out.println("der er gået noget galt");
         }
@@ -90,19 +90,39 @@ public class MyController {
 
     }
 
-    //hugget fra gammel projekt !på ingen måde færdigt!
-    @PostMapping("/createUser")
-    public String createUser(
-            @RequestParam String username,
-            @RequestParam String password,
-            Model model) {
-        //find en måde at parse de 2 info videre til create...
-       /* if (logIn.userExsist(username) == false) {
-            return "createUser";
-        } else {
-            return "userAlreadyExsists";
-        }*/
-        return null; // skal ikke bruges.
+    @GetMapping("/createUserG")
+    public String createUser(Model model){
+        model.addAttribute("user", new User());
+        return "opret";
     }
 
+    @PostMapping("/createUserP")
+    public String createUser(
+        @ModelAttribute User user,
+        @RequestParam String username,
+        @RequestParam String password,
+        @RequestParam String name,
+        @RequestParam String surname,
+        @RequestParam String region,
+        @RequestParam int age,
+        @RequestParam String about,
+        @RequestParam String date,
+        Model model){
+            ArrayList<User> userList = new ArrayList<>();
+            model.addAttribute("user", userList);
+            System.out.println("Rasmus kode er god");
+            User u = new User(username, password, name, surname, region, age, about);
+            jdbcWriter.createUser(u);
+            return "profil";
+    }
+
+    @PostMapping("/SearchResult")
+    public String Result(
+            @RequestParam String age,
+            @RequestParam String region) {
+        System.out.println(age);
+        Search search = new Search();
+        search.writeStatement("",age,region,"");
+        return "/result";
+    }
 }
