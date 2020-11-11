@@ -9,7 +9,7 @@ import java.util.Vector;
 
 public class JDBCWriter {
 
-   // private static Connection connection = null;
+    // private static Connection connection = null;
 
    /* public boolean setConnection() {
         final String url = "jdbc:mysql://localhost:3306/userdb?serverTimezone=UTC";
@@ -64,11 +64,11 @@ public class JDBCWriter {
         return bruger;
     }
 
-    public void createUser(User u){
+    public void createUser(User u) {
         Connection connection = DBManager.getConnection();
         String sqlstr = "INSERT INTO users (username, password, name, surname, region, age, about) VAlUES (?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement;
-        try{
+        try {
             preparedStatement = connection.prepareStatement(sqlstr);
             preparedStatement.setString(1, u.getUsername());
             preparedStatement.setString(2, u.getPassword());
@@ -85,11 +85,11 @@ public class JDBCWriter {
         }
     }
 
-    public void updateUser(User u){
+    public void updateUser(User u) {
         Connection connection = DBManager.getConnection();
         String sqlupstr = "UPDATE users SET(username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE user_id = u;";
         PreparedStatement preparedStatement;
-        try{
+        try {
             preparedStatement = connection.prepareStatement(sqlupstr);
             preparedStatement.setString(1, u.getUsername());
             preparedStatement.setString(2, u.getPassword());
@@ -98,22 +98,21 @@ public class JDBCWriter {
             preparedStatement.setString(5, u.getRegion());
             preparedStatement.setInt(6, u.getAge());
             preparedStatement.setString(7, u.getAbout());
-        } catch (SQLException sqlerr){
-            System.out.println("Fejl i opdatering"+ sqlerr);
+        } catch (SQLException sqlerr) {
+            System.out.println("Fejl i opdatering" + sqlerr);
         }
     }
 
     public int logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
-        String searchStr = "SELECT count(*) as line, user_id FROM users where username = ? and password = ? ;";
+        String searchStr = "SELECT count(*) as user_id, username, age , name, surname, region, about FROM users where username = ? and password = ? ;";
         PreparedStatement preparedStatement;
         int res = -1;
-        int id = -1;
         ResultSet resset;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
-            preparedStatement.setString(1,   user );
-            preparedStatement.setString(2,   pass );
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, pass);
             System.out.println(searchStr);
             System.out.println(preparedStatement);
             resset = preparedStatement.executeQuery();
@@ -123,8 +122,21 @@ public class JDBCWriter {
                 System.out.println("fundet antal = " + res);
             }
             if (res == 1) {
-                String idOBJ = "" + resset.getObject("user_id");
-                id = Integer.parseInt(idOBJ);
+                String id = "" + resset.getObject("user_id");
+                String username = "" + resset.getObject("username");
+                String age = "" + resset.getObject("age");
+                String name = "" + resset.getObject("name");
+                String surname = "" + resset.getObject("surname");
+                String region = "" + resset.getObject("region");
+                String about = "" + resset.getObject("about");
+                String is_admin = "" + resset.getObject("is_admin");
+
+                int idN = Integer.parseInt(id);
+                int ageN = Integer.parseInt(age);
+
+                if (is_admin == 0)
+
+                User u = new User(0, username,pass,name,surname,region,0,about,false);
             } else {
                 System.out.println("login fejl. antal fundne profiler: " + res);
             }
@@ -133,10 +145,10 @@ public class JDBCWriter {
             System.out.println("fejl i søgning = " + sqlerr.getMessage());
         }
 
-        return id;
+
     }
 
-    public Boolean userExist(int id){
+    public Boolean userExist(int id) {
         Connection connection = DBManager.getConnection();
         String searchStr = "SELECT count(*) FROM users where user_id = ?";
         PreparedStatement preparedStatement;

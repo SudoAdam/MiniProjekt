@@ -6,23 +6,23 @@ import java.util.Date;
 
 public class User {
     private static int id = -1;
-    private String username;
-    private String password; // til intern test
-    private String name;
-    private String surname;
-    private String region;
-    private int age;
-    private String about;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private static String username;
+    private static String password; // til intern test
+    private static String name;
+    private static String surname;
+    private static String region;
+    private static int age;
+    private static String about;
+    private static Boolean isAdmin;
 
-    public User(int id, String name, String password) {
+   /* public User(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
-    }
+    }*/
 
-    public User(String username, String password, String name, String surname, String region, int age, String about) {
+    public User( int id, String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -30,13 +30,11 @@ public class User {
         this.region = region;
         this.age = age;
         this.about = about;
-        // this.date = date;
+        this .isAdmin = isAdmin;
     }
 
 
 
-    public User(){
-    }
 
     public String getAbout() {
         return about;
