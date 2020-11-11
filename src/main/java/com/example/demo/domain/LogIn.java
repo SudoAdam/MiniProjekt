@@ -29,4 +29,7 @@ public class LogIn {
 
     public void create(String username, String password) {
     }
+    public void logout(){
+        User user = new User(-1,"","");
+    }
 }
