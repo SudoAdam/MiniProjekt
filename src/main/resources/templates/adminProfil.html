@@ -1,0 +1,22 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+</head>
+<link rel="stylesheet" href="myCSS.css">
+<th:block th:include="/includes/indexHeader :: header"></th:block>
+<body>
+
+
+<div class="container">
+    <h3 id="header3">Admin</h3>
+    <form action="/removeUser" method="POST">
+
+        <label for="removeUser">Fjern bruger:</label>
+        <input type="text" id="removeUser" name="removeUser" placeholder="Indtast user_id">
+        <button type="submit" name="action" value="removeUserButton">Fjern bruger</button>
+
+    </form>
+</div>
+
+</body>
+<th:block th:include="/includes/footer :: footer"></th:block>
+</html>
