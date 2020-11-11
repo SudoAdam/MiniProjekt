@@ -15,7 +15,7 @@ public class JDBCWriter {
         final String url = "jdbc:mysql://localhost:3306/userdb?serverTimezone=UTC";
         boolean bres = false;
         try {
-            connection = DriverManager.getConnection(url, "user", "User");
+            connection = DriverManager.getConnection(url, "root", "Computerlastbil1");
             bres = true;
             System.out.println("connection SUCSSES");
         } catch (SQLException ioerr) {
@@ -66,7 +66,7 @@ public class JDBCWriter {
 
     public void createUser(User u){
         Connection connection = DBManager.getConnection();
-        String sqlstr = "INSERT INTO users (username, password, name, surname, region, age, about, date_for_test) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String sqlstr = "INSERT INTO users (username, password, name, surname, region, age, about) VAlUES (?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement;
         try{
             preparedStatement = connection.prepareStatement(sqlstr);
@@ -77,7 +77,6 @@ public class JDBCWriter {
             preparedStatement.setString(5, u.getRegion());
             preparedStatement.setInt(6, u.getAge());
             preparedStatement.setString(7, u.getAbout());
-            preparedStatement.setTimestamp(8, (Timestamp) u.getDate());
             int row = preparedStatement.executeUpdate();
             System.out.println(row);
             System.out.println(preparedStatement);

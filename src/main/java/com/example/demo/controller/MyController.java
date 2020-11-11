@@ -106,7 +106,6 @@ public class MyController {
         @RequestParam String region,
         @RequestParam int age,
         @RequestParam String about,
-        @RequestParam String date,
         Model model){
             ArrayList<User> userList = new ArrayList<>();
             model.addAttribute("user", userList);
