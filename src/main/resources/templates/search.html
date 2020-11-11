@@ -9,11 +9,18 @@
 <body>
 <form action="/SearchResult" method="POST">
    <div class="div_text">
-        <h3>
-            Ønsket køn
-        </h3>
-        <input type="text" name="gender">
+       <h3>Hvad søger du efter?</h3>
+       <p>
+           <br>
+       </p>
+       <select name="Gender" id="genderList">
+           <option value="1">Køn</option>
+           <option value="2">Mand</option>
+           <option value="3">Kvinde</option>
+           <option value="4">Andet</option>
+       </select>
         <p>
+       <br><br>
         <h3>
             Ønsket alder
         </h3>
@@ -29,6 +36,7 @@
         </h3>
         <input type="text" name="sexuality">
         <button type="submit" name="action">Søg</button>
+
     </div>
 </form>
 </body>
