@@ -183,4 +183,11 @@ public class MyController {
         search.writeStatement("",age,region,"");
         return "/result";
     }
+
+    @GetMapping("/logout")
+    public String logout(){
+        logIn.logout();
+
+        return "index";
+    }
 }
