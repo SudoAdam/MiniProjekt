@@ -205,7 +205,7 @@ public class MyController {
             modelUpdate.addAttribute("user", userUpList);
             User u = new User(name, surname, region, age, about);
             jdbcWriter.updateUser(u);
-            return "profil";
+            return "redirect:/visProfil";
         }
 */
     @PostMapping("/SearchResult")
