@@ -28,7 +28,7 @@ public class MyController {
     //@ResponseBody
     public String index() {
         DBManager.getConnection();
-       return "index";
+        return "index";
     }
 
     @GetMapping("/search")
@@ -49,12 +49,12 @@ public class MyController {
     }
 
     @GetMapping("/admin")
-    public String admin(){
+    public String admin() {
         return "admin";
     }
 
     @GetMapping("/adminProfil")
-    public String adminProfil(){
+    public String adminProfil() {
         return "adminProfil";
     }
 
@@ -62,10 +62,10 @@ public class MyController {
     //hugget fra gammel projekt !på ingen måde færdigt!
     @PostMapping("/logIn")
     public String logIn(WebRequest request,
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam int action,
-            Model model) {
+                        @RequestParam String username,
+                        @RequestParam String password,
+                        @RequestParam int action,
+                        Model model) {
         //forsøg på at få index formen til både at kunne logge ind og oprette
         System.out.println("Så langt så godt");
         int id = -1;
@@ -75,12 +75,12 @@ public class MyController {
             //log in action
 
             if (logIn.login(username, password) != null) {
-                    user = logIn.login(username, password);
-                    request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
-                    if (user.getAdmin()== true){
-                       // user = logIn.login(username, password);
-                        return "adminProfil";
-                    }else{
+                user = logIn.login(username, password);
+                request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
+                if (user.getAdmin() == true) {
+                    // user = logIn.login(username, password);
+                    return "adminProfil";
+                } else {
                     return "profil";
                 }
             } else {
@@ -116,7 +116,7 @@ public class MyController {
             //log in action
 
             if (logIn.login(username, password) != null) {
-                if(isAdmin == true) {
+                if (isAdmin == true) {
                     user = logIn.login(username, password);
                     return "adminProfil";
                 } else {
@@ -137,100 +137,100 @@ public class MyController {
 
 
     @GetMapping("/createUserG")
-    public String createUser(Model model){
+    public String createUser(Model model) {
         model.addAttribute("user", new User());
         return "opret";
     }
 
     @PostMapping("/createUserP")
     public String createUser(
-        @ModelAttribute User user,
-        @RequestParam String username,
-        @RequestParam String password,
-        @RequestParam String name,
-        @RequestParam String surname,
-        @RequestParam String region,
-        @RequestParam int age,
-        @RequestParam String about,
-        Model model){
-            ArrayList<User> userList = new ArrayList<>();
-            model.addAttribute("user", userList);
-            System.out.println("Rasmus kode er god");
-            User u = new User(username, password, name, surname, region, age, about,false);
-            jdbcWriter.createUser(u);
-            return "index";
+            @ModelAttribute User user,
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestParam String name,
+            @RequestParam String surname,
+            @RequestParam String region,
+            @RequestParam int age,
+            @RequestParam String about,
+            Model model) {
+        ArrayList<User> userList = new ArrayList<>();
+        model.addAttribute("user", userList);
+        System.out.println("Rasmus kode er god");
+        User u = new User(username, password, name, surname, region, age, about, false);
+        jdbcWriter.createUser(u);
+        return "index";
     }
 
     @GetMapping("/profil")
     public String profil(Model model) {
         String bruger = jdbcWriter.getUser(user.getId());
         System.out.println(bruger);
-        model.addAttribute("id",bruger);
+        model.addAttribute("id", bruger);
         return "profil";
     }
 
     @GetMapping("/visProfil")
-    public String visProfil(Model model){
-            model.addAttribute("name", user.getName());
-            model.addAttribute("surname", user.getSurname());
-            model.addAttribute("region", user.getRegion());
-            model.addAttribute("age", user.getAge());
-            model.addAttribute("about", user.getAbout());
+    public String visProfil(Model model) {
+        model.addAttribute("name", user.getName());
+        model.addAttribute("surname", user.getSurname());
+        model.addAttribute("region", user.getRegion());
+        model.addAttribute("age", user.getAge());
+        model.addAttribute("about", user.getAbout());
         return "profil";
     }
 
     @GetMapping("/update")
-    public String update(Model model){
+    public String update(Model model) {
         model.addAttribute("user", new User());
         return "update";
     }
 
     @PostMapping("/updateUserP")
     public String updateUser(WebRequest request,
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String region,
-            @RequestParam int age,
-            @RequestParam String about,
-            Model modelUpdate) {
-            ArrayList<User> userUpList = new ArrayList<>();
-            modelUpdate.addAttribute("user", userUpList);
-            User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about,false);
-            jdbcWriter.updateUser(u);
-            request.setAttribute("user", u, WebRequest.SCOPE_SESSION);
-            return "redirect:/visProfil";
-        }
+                             @RequestParam String name,
+                             @RequestParam String surname,
+                             @RequestParam String region,
+                             @RequestParam int age,
+                             @RequestParam String about,
+                             Model modelUpdate) {
+        ArrayList<User> userUpList = new ArrayList<>();
+        modelUpdate.addAttribute("user", userUpList);
+        User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about, false);
+        jdbcWriter.updateUser(u);
+        request.setAttribute("user", u, WebRequest.SCOPE_SESSION);
+        return "redirect:/visProfil";
+    }
 
     @GetMapping("/Search")
-    public String Search(
-            @RequestParam String age,
-            @RequestParam String region,
-            @RequestParam int gender) {
-        System.out.println(age);
-        Search search = new Search();
-        search.writeStatement(gender,age,region);
+    public String Search() {
         return "search";
     }
 
     @PostMapping("/searchResult")
-    public String Result(){
+    public String Result(
+            @RequestParam String minAge,
+            @RequestParam String maxAge,
+            @RequestParam String region,
+            @RequestParam int gender) {
+        Search search = new Search();
+        search.writeStatement(gender, minAge, maxAge, region);
         return "searchList";
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public String logout() {
         logIn.logout();
         return "index";
     }
 
     @GetMapping("/removeuser")//htmlside
-    public String removeuser(@RequestParam int userID){
+    public String removeuser(@RequestParam int userID) {
         jdbcWriter.removeUser(userID);
         return "adminProfil";
     }
 
     @PostMapping("/removeduser")
-    public String removeduser(@RequestParam int userID){
+    public String removeduser(@RequestParam int userID) {
         jdbcWriter.removeUser(userID);
         return "removedUser";
     }
