@@ -38,14 +38,6 @@ public class MyController {
         return "search";
     }
 
-    @GetMapping("/profil")
-    public String profil(Model model) {
-        String bruger = jdbcWriter.getUser(user.getId());
-        System.out.println(bruger);
-        model.addAttribute("id",bruger);
-        return "profil";
-    }
-
     @GetMapping("/about")
     public String about() {
         return "omos";
@@ -54,11 +46,6 @@ public class MyController {
     @GetMapping("/karantæne")
     public String karantæne() {
         return "karantæne";
-    }
-
-    @GetMapping("/update")
-    public String update(){
-        return "update";
     }
 
     @GetMapping("/admin")
@@ -110,7 +97,7 @@ public class MyController {
 
         System.out.println("id =" + id);
         return "search";
-
+        // Rasmus er den bedste
     }
 
     @PostMapping("/adminLogIn")
@@ -179,6 +166,14 @@ public class MyController {
             jdbcWriter.createUser(u);
             return "profil";
     }
+/*
+    @GetMapping("/profil")
+    public String profil(Model model) {
+        String bruger = jdbcWriter.getUser(user.getId());
+        System.out.println(bruger);
+        model.addAttribute("id",bruger);
+        return "profil";
+    }*/
 
     @GetMapping("/visProfil")
     public String visProfil(Model model){
@@ -191,11 +186,15 @@ public class MyController {
         return "profil";
     }
 
+    @GetMapping("/update")
+    public String update(Model model){
+        model.addAttribute("user", new User());
+        return "update";
+    }
+
     @PostMapping("/updateUserP")
     public String updateUser(
             @ModelAttribute User user,
-            @RequestParam String username,
-            @RequestParam String password,
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam String region,
@@ -204,7 +203,7 @@ public class MyController {
             Model modelUpdate) {
             ArrayList<User> userUpList = new ArrayList<>();
             modelUpdate.addAttribute("user", userUpList);
-            User u = new User(username, password, name, surname, region, age, about, false);
+            User u = new User(name, surname, region, age, about);
             jdbcWriter.updateUser(u);
             return "profil";
         }
