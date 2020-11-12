@@ -24,17 +24,22 @@
         <h3>
             Ønsket alder
         </h3>
-        <input type="text" name="age">
+        <input type="text" name="minAge" placeholder="Min.">
+        <input type="text" name="maxAge" placeholder="Max.">
         <p>
         <h3>
             Ønsket region
         </h3>
-        <input type="text" name="region">
+        <select name="region" id="regionList">
+           <option value="1">Hovedstaden</option>
+           <option value="2">Sjælland eksl. hovedstaden</option>
+           <option value="3">Nordjylland</option>
+           <option value="4">Midtjylland</option>
+           <option value="5">Syd- og Sønderjylland</option>
+           <option value="6">Fyn</option>
+        </select>
         <p>
-        <h3>
-            Ønsket sexualitet
-        </h3>
-        <input type="text" name="sexuality">
+
         <button type="submit" name="action">Søg</button>
 
     </div>
