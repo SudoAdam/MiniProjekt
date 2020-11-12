@@ -166,18 +166,17 @@ public class MyController {
             jdbcWriter.createUser(u);
             return "profil";
     }
-/*
+
     @GetMapping("/profil")
     public String profil(Model model) {
         String bruger = jdbcWriter.getUser(user.getId());
         System.out.println(bruger);
         model.addAttribute("id",bruger);
         return "profil";
-    }*/
+    }
 
     @GetMapping("/visProfil")
     public String visProfil(Model model){
-
             model.addAttribute("name", user.getName());
             model.addAttribute("surname", user.getSurname());
             model.addAttribute("region", user.getRegion());
@@ -191,10 +190,9 @@ public class MyController {
         model.addAttribute("user", new User());
         return "update";
     }
-/*
+
     @PostMapping("/updateUserP")
-    public String updateUser(
-            @ModelAttribute User user,
+    public String updateUser(WebRequest request,
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam String region,
@@ -203,11 +201,12 @@ public class MyController {
             Model modelUpdate) {
             ArrayList<User> userUpList = new ArrayList<>();
             modelUpdate.addAttribute("user", userUpList);
-            User u = new User(name, surname, region, age, about);
+            User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about,false);
             jdbcWriter.updateUser(u);
+            request.setAttribute("user", u, WebRequest.SCOPE_SESSION);
             return "redirect:/visProfil";
         }
-*/
+
     @PostMapping("/SearchResult")
     public String Result(
             @RequestParam String age,

@@ -86,9 +86,9 @@ public class JDBCWriter {
         }
     }
 
-    public void updateUser(User u) {
+    public void updateUser( User u) {
         Connection connection = DBManager.getConnection();
-        String sqlupstr = "UPDATE users SET email = ?, surname = ?, region = ?, age = ?, about= ? WHERE user_id = ?;";
+        String sqlupstr = "UPDATE users SET email = ?, surname = ?, region = ?, age = ?, about = ? WHERE user_id = ?;";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlupstr);
@@ -97,7 +97,7 @@ public class JDBCWriter {
             preparedStatement.setString(3, u.getRegion());
             preparedStatement.setInt(4, u.getAge());
             preparedStatement.setString(5, u.getAbout());
-            preparedStatement.setString(6, u.getID());
+            preparedStatement.setInt(6, u.getId());
             int row = preparedStatement.executeUpdate();
             System.out.println(row);
             System.out.println(preparedStatement);
@@ -122,7 +122,7 @@ public class JDBCWriter {
 
     public User logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
-        String searchStr = "SELECT count(*) as user_id, email, password, name, surname, region, age, about, is_admin FROM users WHERE email = ? and password = ?;";
+        String searchStr = "SELECT count(*) as count, user_id, email, password, name, surname, region, age, about, is_admin FROM users WHERE email = ? and password = ?;";
         PreparedStatement preparedStatement;
         User u = new User();
         int res = -1;
