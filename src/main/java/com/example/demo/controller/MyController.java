@@ -9,6 +9,7 @@ import com.example.demo.services.Search;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -73,11 +74,11 @@ public class MyController {
 
     //hugget fra gammel projekt !på ingen måde færdigt!
     @PostMapping("/logIn")
-    public String logIn(
+    public String logIn(WebRequest request,
             @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam int action,
-            Model model) {
+                        @RequestParam String password,
+                        @RequestParam int action,
+                        Model model) {
         //forsøg på at få index formen til både at kunne logge ind og oprette
         System.out.println("Så langt så godt");
         int id = -1;
@@ -88,11 +89,12 @@ public class MyController {
 
             if (logIn.login(username, password) != null) {
                     user = logIn.login(username, password);
-                    if (User.getIsAdmin()== true){
-                        user = logIn.login(username, password);
+                    request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
+                    if (user.getAdmin()== true){
+                       // user = logIn.login(username, password);
                         return "adminProfil";
                     }else{
-                    return "redirect:/visProfil";
+                    return "profil";
                 }
             } else {
                 return "index";
@@ -180,11 +182,12 @@ public class MyController {
 
     @GetMapping("/visProfil")
     public String visProfil(Model model){
-            model.addAttribute("name", User.getName());
-            model.addAttribute("surname", User.getSurname());
-            model.addAttribute("region", User.getRegion());
-            model.addAttribute("age", User.getAge());
-            model.addAttribute("about", User.getAbout());
+
+            model.addAttribute("name", user.getName());
+            model.addAttribute("surname", user.getSurname());
+            model.addAttribute("region", user.getRegion());
+            model.addAttribute("age", user.getAge());
+            model.addAttribute("about", user.getAbout());
         return "profil";
     }
 

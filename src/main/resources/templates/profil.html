@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="myCSS.css">
@@ -16,14 +15,15 @@
          </div>
          <div class="box-text">
              <h1>Fulde navn:</h1>
-             <p th:text="${name}">Fulde navn</p>
-             <p th:text="${surname}">Efternavn</p>
+             <p th:text="${session.user.name}">Fulde navn</p>
+             <p th:text="${session.user.surname}">Efternavn</p>
              <h2>Region:</h2>
-             <p th:text="${region}">Region</p>
+             <p th:text="${session.user.region}">Region</p>
              <h2>Alder:</h2>
-             <p th:text="${age}">Alder</p>
+             <p th:text="${session.user.age}">Alder</p>
              <h2>om mig:</h2>
-             <p th:text="${about}">Om mig</p>
+             <p th:text="${session.user.about}">Om mig</p>
+
 
                 <div class="">
              <li><a href="/update">Update profil</a></li>
