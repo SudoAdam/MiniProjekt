@@ -7,17 +7,19 @@
 </head>
 <th:block th:include="/includes/header :: header"></th:block>
 <body>
-<form action="/SearchResult" method="POST">
+<form action="/searchResult" method="post">
    <div class="div_text">
        <h3>Hvad søger du efter?</h3>
        <p>
            <br>
        </p>
+       <h3>
+           Køn:
+       </h3>
        <select name="Gender" id="genderList">
-           <option value="1">Køn</option>
-           <option value="2">Mand</option>
-           <option value="3">Kvinde</option>
-           <option value="4">Andet</option>
+           <option value="Mand">Mand</option>
+           <option value="Kvinde">Kvinde</option>
+           <option value="Andet">Andet</option>
        </select>
         <p>
        <br><br>
@@ -31,17 +33,16 @@
             Ønsket region
         </h3>
         <select name="region" id="regionList">
-           <option value="1">Hovedstaden</option>
-           <option value="2">Sjælland eksl. hovedstaden</option>
-           <option value="3">Nordjylland</option>
-           <option value="4">Midtjylland</option>
-           <option value="5">Syd- og Sønderjylland</option>
-           <option value="6">Fyn</option>
+           <option value="Hoved">Hovedstaden</option>
+           <option value="Sjælland eksl. hovedstaden">Sjælland eksl. hovedstaden</option>
+           <option value="Nordjylland">Nordjylland</option>
+           <option value="Midtjylland">Midtjylland</option>
+           <option value="Syd- og Sønderjylland">Syd- og Sønderjylland</option>
+           <option value="Fyn">Fyn</option>
         </select>
         <p>
 
         <button type="submit" name="action">Søg</button>
-
     </div>
 </form>
 </body>
