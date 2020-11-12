@@ -140,13 +140,6 @@ public class MyController {
         return "search";
 
     }
-    @GetMapping("/removeUser")
-    public String removeUser(
-            @RequestParam int removeUser,
-            Model model){
-        jdbcWriter.removeUser(removeUser);
-        return "adminProfil";
-    }
 
     @GetMapping("/createUserG")
     public String createUser(Model model){
@@ -220,5 +213,17 @@ public class MyController {
         logIn.logout();
 
         return "index";
+    }
+
+    @GetMapping("/removeuser")//htmlside
+    public String removeuser(@RequestParam int userID){
+            jdbcWriter.removeUser(userID);
+        return "adminProfil";
+    }
+
+    @PostMapping("/removeduser")
+    public String removeduser(@RequestParam int userID){
+        jdbcWriter.removeUser(userID);
+        return "removedUser";
     }
 }

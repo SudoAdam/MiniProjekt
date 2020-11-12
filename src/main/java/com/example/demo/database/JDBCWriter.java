@@ -106,8 +106,9 @@ public class JDBCWriter {
     }
 
     public void removeUser(int userID){
+        System.out.println("Så langt så godt test");
         Connection connection = DBManager.getConnection();
-        String sqlRemove = "DELETE * FROM users WHERE user_id = ?";
+        String sqlRemove = "DELETE FROM userdb.users WHERE user_id = ?";
         PreparedStatement preparedStatement;
         String userIDstr = "" + userID;
         try{
@@ -121,7 +122,7 @@ public class JDBCWriter {
 
     public User logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
-        String searchStr = "SELECT count(*) as user_id, email, age , name, surname, region, about, is_admin FROM users where email = ? and password = ? ;";
+        String searchStr = "SELECT count(*) as user_id, email, age , name, surname, region, about, is_admin FROM users where email = ? and password = ?;";
         PreparedStatement preparedStatement;
         User u = new User();
         int res = -1;
@@ -149,7 +150,7 @@ public class JDBCWriter {
                 String is_admin = "" + resset.getObject("is_admin");
 
                 int idN = Integer.parseInt(id);
-                int ageN = Integer.parseInt(age);
+                int ageN = Integer. parseInt(age);
                 Boolean isAdmin = false;
 
                 System.out.println("vores id er = " + idN + " og som string " + id);
