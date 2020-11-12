@@ -37,14 +37,6 @@ public class MyController {
         return "search";
     }
 
-    @GetMapping("/profil")
-    public String profil(Model model) {
-        String bruger = jdbcWriter.getUser(user.getId());
-        System.out.println(bruger);
-        model.addAttribute("id",bruger);
-        return "profil";
-    }
-
     @GetMapping("/about")
     public String about() {
         return "omos";
@@ -172,6 +164,14 @@ public class MyController {
             jdbcWriter.createUser(u);
             return "profil";
     }
+/*
+    @GetMapping("/profil")
+    public String profil(Model model) {
+        String bruger = jdbcWriter.getUser(user.getId());
+        System.out.println(bruger);
+        model.addAttribute("id",bruger);
+        return "profil";
+    }*/
 
     @GetMapping("/visProfil")
     public String visProfil(Model model){
