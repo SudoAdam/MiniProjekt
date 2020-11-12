@@ -191,7 +191,7 @@ public class MyController {
         model.addAttribute("user", new User());
         return "update";
     }
-
+/*
     @PostMapping("/updateUserP")
     public String updateUser(
             @ModelAttribute User user,
@@ -207,14 +207,15 @@ public class MyController {
             jdbcWriter.updateUser(u);
             return "profil";
         }
-
+*/
     @PostMapping("/SearchResult")
     public String Result(
             @RequestParam String age,
-            @RequestParam String region) {
+            @RequestParam String region,
+            @RequestParam int gender) {
         System.out.println(age);
         Search search = new Search();
-        search.writeStatement("",age,region,"");
+        search.writeStatement(gender,age,region);
         return "/result";
     }
 
