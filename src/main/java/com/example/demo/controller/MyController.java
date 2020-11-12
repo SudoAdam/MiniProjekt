@@ -187,7 +187,7 @@ public class MyController {
 /*
     @PostMapping("/updateUserP")
     public String updateUser(
-            @ModelAttribute User user,
+           // @ModelAttribute User user,
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam String region,
