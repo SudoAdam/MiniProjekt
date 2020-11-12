@@ -225,8 +225,7 @@ public class MyController {
         return "index";
     }
     @GetMapping("/removeuser")//htmlside
-    public String removeuser(@RequestParam int userID){
-        jdbcWriter.removeUser(userID);
+    public String removeuser(){
         return "adminProfil";
     }
 
