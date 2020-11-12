@@ -11,7 +11,7 @@ public class    Search {
     DBSearch dbSearch = new DBSearch();
     ArrayList<ResultUsers> results = new ArrayList<>();
 
-public void writeStatement(String gender, String age, String region, String sex){
+public void writeStatement(int gender, String age, String region){
     String statement = "";
 
     if (age != ""){
@@ -21,7 +21,9 @@ public void writeStatement(String gender, String age, String region, String sex)
         statement += ("region like '%" + region + "%' and ");
     }
 
-   results = dbSearch.search(statement);
+    statement += ("gender = '" + gender + "' ");
+
+   results = dbSearch.search(statement, null);
 }
 
 }

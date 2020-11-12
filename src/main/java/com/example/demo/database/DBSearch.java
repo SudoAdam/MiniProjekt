@@ -11,14 +11,14 @@ import java.util.ArrayList;
 
 public class DBSearch {
 
-    public ArrayList<ResultUsers> search(String seachStatement) {
+    public ArrayList<ResultUsers> search(String seachStatement, User u) {
         Connection connection = DBManager.getConnection();
-        String id = "" + User.getId();
+        String id = "" + u.getId();
         ArrayList<ResultUsers> result = new ArrayList<>();
 
         String searchStr = "SELECT user_id, username, age , name, surname, region, about FROM users where ";
         searchStr += seachStatement;
-        searchStr += " not user_id = ?";
+        searchStr += " not user_id = ? and not is_admin = '1'";
         // select username from users where not user_id ='13'
         PreparedStatement preparedStatement;
         int res = -1;

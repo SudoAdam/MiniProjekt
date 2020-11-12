@@ -88,7 +88,7 @@ public class JDBCWriter {
 
     public void updateUser(User u) {
         Connection connection = DBManager.getConnection();
-        String sqlupstr = "UPDATE users SET (name, surname, region, age, about) VAlUES (?, ?, ?, ?, ?) WHERE user_id = id;";
+        String sqlupstr = "UPDATE users SET email = ?, surname = ?, region = ?, age = ?, about= ? WHERE user_id = id;";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlupstr);

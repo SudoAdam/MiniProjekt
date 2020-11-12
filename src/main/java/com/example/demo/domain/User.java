@@ -5,15 +5,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class User {
-    private static int id = -1;
-    private static String username;
-    private static String password; // til intern test
-    private static String name;
-    private static String surname;
-    private static String region;
-    private static int age;
-    private static String about;
-    private static Boolean isAdmin;
+    private int id = -1;
+    private String username;
+    private String password; // til intern test
+    private String name;
+    private String surname;
+    private String region;
+    private int age;
+    private String about;
+    private Boolean isAdmin;
 
    /* public User(int id, String name, String password) {
         this.id = id;
@@ -58,84 +58,76 @@ public class User {
 
     }
 
-    public User(String name, String surname, String region, int age, String about){
-        this.name = name;
-        this.surname = surname;
-        this.region = region;
-        this.age = age;
-        this.about = about;
-    }
-
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        User.id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public static void setUsername(String username) {
-        User.username = username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
-        User.password = password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    public static void setName(String name) {
-        User.name = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public static String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
-    public static void setSurname(String surname) {
-        User.surname = surname;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public static String getRegion() {
+    public String getRegion() {
         return region;
     }
 
-    public static void setRegion(String region) {
-        User.region = region;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
-    public static int getAge() {
+    public int getAge() {
         return age;
     }
 
-    public static void setAge(int age) {
-        User.age = age;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public static String getAbout() {
+    public String getAbout() {
         return about;
     }
 
-    public static void setAbout(String about) {
-        User.about = about;
+    public void setAbout(String about) {
+        this.about = about;
     }
 
-    public static Boolean getIsAdmin() {
+    public Boolean getAdmin() {
         return isAdmin;
     }
 
-    public static void setIsAdmin(Boolean isAdmin) {
-        User.isAdmin = isAdmin;
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 
     @Override

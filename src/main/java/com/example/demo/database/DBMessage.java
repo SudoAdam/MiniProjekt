@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DBMessage {
-
+/*
     public ArrayList<Message> getMessage() {
         Connection connection = DBManager.getConnection();
         ArrayList<Message> messages = new ArrayList<>();
@@ -46,5 +46,5 @@ public class DBMessage {
             System.out.println("fejl i bedskeder = " + sqlerr.getMessage());
         }
             return messages;
-    }
+    }*/
 }
