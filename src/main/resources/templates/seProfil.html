@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="myCSS.css">
-    <title th:text="${session.user.name}"> - Profil</title>
+    <title th:text="${session.user.name}">Fulde navn</title>
 </head>
 <th:block th:include="/includes/Header :: header"></th:block>
 <body>
@@ -21,8 +21,10 @@
             <p th:text="${session.user.region}">Region</p>
             <h2>Alder:</h2>
             <p th:text="${session.user.age}">Alder</p>
-            <h2>om mig:</h2>
+            <h2>Om mig:</h2>
             <p th:text="${session.user.about}">Om mig</p>
+            <h2>E-mail:</h2>
+            <a href="mailto:${session.user.email}"><p th:text="${session.user.email}">Email</p></a>
 
 
             <div class="">
