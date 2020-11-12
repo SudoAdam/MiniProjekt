@@ -63,9 +63,9 @@ public class MyController {
     @PostMapping("/logIn")
     public String logIn(WebRequest request,
             @RequestParam String username,
-                        @RequestParam String password,
-                        @RequestParam int action,
-                        Model model) {
+            @RequestParam String password,
+            @RequestParam int action,
+            Model model) {
         //forsøg på at få index formen til både at kunne logge ind og oprette
         System.out.println("Så langt så godt");
         int id = -1;
@@ -134,13 +134,7 @@ public class MyController {
         return "search";
 
     }
-    @GetMapping("/removeUser")
-    public String removeUser(
-            @RequestParam int removeUser,
-            Model model){
-        jdbcWriter.removeUser(removeUser);
-        return "adminProfil";
-    }
+
 
     @GetMapping("/createUserG")
     public String createUser(Model model){
@@ -164,7 +158,7 @@ public class MyController {
             System.out.println("Rasmus kode er god");
             User u = new User(username, password, name, surname, region, age, about,false);
             jdbcWriter.createUser(u);
-            return "profil";
+            return "index";
     }
 
     @GetMapping("/profil")
@@ -207,23 +201,28 @@ public class MyController {
             return "redirect:/visProfil";
         }
 
-    @PostMapping("/SearchResult")
-    public String Result(
+    @GetMapping("/Search")
+    public String Search(
             @RequestParam String age,
             @RequestParam String region,
             @RequestParam int gender) {
         System.out.println(age);
         Search search = new Search();
         search.writeStatement(gender,age,region);
-        return "/result";
+        return "search";
+    }
+
+    @PostMapping("/searchResult")
+    public String Result(){
+        return "searchList";
     }
 
     @GetMapping("/logout")
     public String logout(){
         logIn.logout();
-
         return "index";
     }
+
     @GetMapping("/removeuser")//htmlside
     public String removeuser(@RequestParam int userID){
         jdbcWriter.removeUser(userID);
