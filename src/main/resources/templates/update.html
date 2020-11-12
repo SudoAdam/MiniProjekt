@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="myCSS.css">
@@ -12,19 +12,19 @@
   <form action="/updateUserP" method="post">
 
     <label for="navn">Fornavn</label>
-    <input type="text" id="navn" name="name"  th:value="${user.getName()}"> <p>
+    <input type="text" id="navn" name="name"  th:value="${session.user.name}"> <p>
 
     <label for="efternavn">Efternavn</label>
-    <input type="text" id="efternavn" name="surname" th:value="${user.getSurname()}"> <p>
+    <input type="text" id="efternavn" name="surname" th:value="${session.user.surname}"> <p>
 
     <label for="region">Region</label>
-    <input type="text" id="region" name="region" th:value="${user.getRegion()}"> <p>
+    <input type="text" id="region" name="region" th:value="${session.user.region}"> <p>
 
     <label for="age">Alder</label>
-    <input type="text" id="age" name="age" th:value="${user.getAge()}">
+    <input type="text" id="age" name="age" th:value="${session.user.age}">
 
     <label for="digselv">Skriv lidt om dig selv</label>
-    <input type="text" id="digselv" name="about" th:value="${user.getAbout()}">
+    <input type="text" id="digselv" name="about" th:value="${session.user.about}">
 
     <br>
     <br>
