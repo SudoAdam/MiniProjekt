@@ -16,7 +16,7 @@ public class DBSearch {
         String id = "" + u.getId();
         ArrayList<ResultUsers> result = new ArrayList<>();
 
-        String searchStr = "SELECT user_id, username, age , name, surname, region, about FROM users where ";
+        String searchStr = "SELECT user_id, email, age , name, surname, region, about FROM users where ";
         searchStr += seachStatement;
         searchStr += " not user_id = ?"; // and not is_admin = '1'
         // select username from users where not user_id ='13'
@@ -25,7 +25,7 @@ public class DBSearch {
         ResultSet resset;
         try {
             preparedStatement = connection.prepareStatement(searchStr);
-           // preparedStatement.setString(1, seachStatement);
+            //preparedStatement.setString(1, seachStatement);
             preparedStatement.setString(1, id);
             System.out.println(searchStr);
             System.out.println(preparedStatement);

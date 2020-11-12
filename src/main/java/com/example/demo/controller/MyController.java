@@ -207,13 +207,12 @@ public class MyController {
     }
 
     @PostMapping("/searchResult")
-    public String Result(
+    public String Result(WebRequest request,
             @RequestParam String minAge,
             @RequestParam String maxAge,
-            @RequestParam String region,
-            @RequestParam int gender) {
+            @RequestParam String region) {
         Search search = new Search();
-        search.writeStatement(gender, minAge, maxAge, region);
+        search.writeStatement(minAge, maxAge, region, user);
         return "searchList";
     }
 
