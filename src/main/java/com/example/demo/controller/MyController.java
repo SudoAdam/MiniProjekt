@@ -61,11 +61,7 @@ public class MyController {
 
     //hugget fra gammel projekt !på ingen måde færdigt!
     @PostMapping("/logIn")
-    public String logIn(WebRequest request,
-                        @RequestParam String username,
-                        @RequestParam String password,
-                        @RequestParam int action,
-                        Model model) {
+    public String logIn(WebRequest request, @RequestParam String username, @RequestParam String password, @RequestParam int action, Model model) {
         //forsøg på at få index formen til både at kunne logge ind og oprette
         System.out.println("Så langt så godt");
         int id = -1;
@@ -97,7 +93,6 @@ public class MyController {
 
         System.out.println("id =" + id);
         return "search";
-        // Rasmus er den bedste
     }
 
     @PostMapping("/adminLogIn")
