@@ -11,19 +11,21 @@ public class    Search {
     DBSearch dbSearch = new DBSearch();
     ArrayList<ResultUsers> results = new ArrayList<>();
 
-public void writeStatement(int gender, String age, String region){
+public void writeStatement(String minAge, String maxAge, String region, User user){
     String statement = "";
+    System.out.println("nu er du her");
 
-    if (age != ""){
-        statement += ("age = '" + age + "' and ");
+    if (minAge != "" &&  maxAge != "" ){
+        statement += ("age BETWEEN '" + minAge + "' and '" + maxAge + "' and ");
     }
     if (region != ""){
         statement += ("region like '%" + region + "%' and ");
     }
 
-    statement += ("gender = '" + gender + "' ");
-
-   results = dbSearch.search(statement, null);
+    //statement += ("gender = '" + gender + "' ");
+    System.out.println(statement);
+   results = dbSearch.search(statement, user);
+    System.out.println("når jeg hertil?");
 }
 
 }

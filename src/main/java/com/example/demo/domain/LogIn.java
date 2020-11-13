@@ -6,7 +6,6 @@ public class LogIn {
 
     JDBCWriter jdbcWriter = new JDBCWriter();
 
-
    /* public boolean userExsist(String user) {
         Boolean exsist = false;
 
