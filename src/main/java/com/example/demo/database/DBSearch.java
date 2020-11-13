@@ -16,7 +16,7 @@ public class DBSearch {
         String id = "" + u.getId();
         ArrayList<ResultUsers> result = new ArrayList<>();
 
-        String searchStr = "SELECT user_id, email, age , name, surname, region, about FROM users where ";
+        String searchStr = "SELECT user_id, email, age , name, surname, region, about, image_link FROM users where ";
         searchStr += seachStatement;
         searchStr += " not user_id = ?"; // and not is_admin = '1'
         // select username from users where not user_id ='13'
@@ -48,13 +48,14 @@ public class DBSearch {
                 String resultSurname = ""+ resset.getObject(5);
                 String resultRegion = ""+ resset.getObject(6);
                 String resultAbout = ""+ resset.getObject(7);
+                String imageLink = "" + resset.getObject(8);
 
                 System.out.println(resultID);
                 int resultIntId = Integer.parseInt(resultID);
                 System.out.println(resultIntId);
                 int resultIntAge =  Integer.parseInt(resultAge);
                 ResultUsers user = new ResultUsers(resultIntId, resultUsername, resultName, resultSurname,
-                                        resultRegion, resultIntAge, resultAbout);
+                                        resultRegion, resultIntAge, resultAbout, imageLink );
                 System.out.println(user);
                 result.add(user);
                 //res = Integer.parseInt(str);
