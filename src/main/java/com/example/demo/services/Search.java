@@ -27,5 +27,7 @@ public void writeStatement(String minAge, String maxAge, String region, User use
    results = dbSearch.search(statement, user);
     System.out.println("når jeg hertil?");
 }
-
+public ArrayList<ResultUsers> searchResult(){
+    return results;
+}
 }

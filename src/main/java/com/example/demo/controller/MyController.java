@@ -4,8 +4,10 @@ import com.example.demo.database.DBManager;
 import com.example.demo.database.DBSearch;
 import com.example.demo.database.JDBCWriter;
 import com.example.demo.domain.LogIn;
+import com.example.demo.domain.ResultUsers;
 import com.example.demo.domain.User;
 import com.example.demo.services.Search;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -211,8 +213,15 @@ public class MyController {
             @RequestParam String minAge,
             @RequestParam String maxAge,
             @RequestParam String region) {
-        Search search = new Search();
         search.writeStatement(minAge, maxAge, region, user);
+        return "redirect:/searchList";
+    }
+
+    @GetMapping("/searchList")
+    public String searchList(Model model){
+        ArrayList<ResultUsers> userSearchList = search.searchResult();
+        model.addAttribute("users", userSearchList);
+        System.out.println(userSearchList);
         return "searchList";
     }
 
