@@ -15,10 +15,12 @@ public class ResultUsers {
     private String about;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+    private String imageLink;
 
 
 
-    public ResultUsers(int id, String username, String name, String surname, String region, int age, String about) {
+
+    public ResultUsers(int id, String username, String name, String surname, String region, int age, String about, String imageLink) {
         this.id = id;
         this.username = username;
         this.name = name;
@@ -27,6 +29,7 @@ public class ResultUsers {
         this.age = age;
         this.about = about;
         // this.date = date;
+        this.imageLink = imageLink;
     }
 
     public int getId() {
@@ -93,6 +96,14 @@ public class ResultUsers {
         this.date = date;
     }
 
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     @Override
     public String toString() {
         return "ResultUsers{" +
@@ -103,6 +114,8 @@ public class ResultUsers {
                 ", region='" + region + '\'' +
                 ", age=" + age +
                 ", about='" + about + '\'' +
+                ", date=" + date +
+                ", imageLink='" + imageLink + '\'' +
                 '}';
     }
 }

@@ -12,6 +12,7 @@
     <table>
         <thead>
         <tr>
+            <th> ImageLink</th>
             <th> Navn </th>
             <th> Efternavn </th>
             <th> E-mail</th>
@@ -22,6 +23,7 @@
         </thead>
         <tbody>
         <tr th:each="user : ${users}">
+            <div class="box-img"><td><img th:src="${user.imageLink}"> imageLink</img></td></div>
             <td><span th:text="${user.name}"> Name </span></td>
             <td><span th:text="${user.surname}"> Efternavn </span></td>
             <td><span th:text="${user.username}"> E-mail</span></td>
