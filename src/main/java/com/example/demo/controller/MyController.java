@@ -155,12 +155,12 @@ public class MyController {
             @RequestParam int age,
             @RequestParam String about,
             @RequestParam String imageLink,
-            Model model) {
+            @RequestParam int gender_id) {
         //ArrayList<User> userList = new ArrayList<>();
         //model.addAttribute("user", userList);
         System.out.println("Rasmus kode er god");
         System.out.println(imageLink);
-        User u = new User(username, password, name, surname, region, age, about, false, imageLink);
+        User u = new User(username, password, name, surname, region, age, about, false, imageLink, gender_id);
         jdbcWriter.createUser(u);
         return "index";
     }
@@ -200,7 +200,7 @@ public class MyController {
                              Model modelUpdate) {
         ArrayList<User> userUpList = new ArrayList<>();
         modelUpdate.addAttribute("user", userUpList);
-        User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about, false, user.getImageLink());
+        User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about, false, user.getGender_id(), user.getImageLink());
         jdbcWriter.updateUser(u);
         request.setAttribute("user", u, WebRequest.SCOPE_SESSION);
         return "redirect:/visProfil";
@@ -213,10 +213,11 @@ public class MyController {
 
     @PostMapping("/searchResult")
     public String Result(WebRequest request,
+            @RequestParam int gender_id,
             @RequestParam String minAge,
             @RequestParam String maxAge,
             @RequestParam String region) {
-        search.writeStatement(minAge, maxAge, region, user);
+        search.writeStatement(gender_id, minAge, maxAge, region, user);
         return "redirect:/searchList";
     }
 
