@@ -1,1 +1,5 @@
+SQL koden eller ER diagrammet til databasen ligger i SQL-Code mappen inde i vores projekt når i downloader det.
+Vi glemte at få populated vores gender table med: gender_id = 1,2,3 og Gender = Mand, Kvinde, Andet... Vi bruger den i vores search funktion.
 
+Vi håber i kan downloade og det virker uden problemer.
+Mvh. Adam, Bilal, Alexander, Daniel og Rasmus
