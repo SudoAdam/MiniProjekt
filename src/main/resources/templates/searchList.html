@@ -14,6 +14,7 @@
         <tr>
             <th> Navn </th>
             <th> Efternavn </th>
+            <th> E-mail</th>
             <th> Region </th>
             <th> Alder </th>
             <th> Om mig </th>
@@ -23,6 +24,7 @@
         <tr th:each="user : ${users}">
             <td><span th:text="${user.name}"> Name </span></td>
             <td><span th:text="${user.surname}"> Efternavn </span></td>
+            <td><span th:text="${user.username}"> E-mail</span></td>
             <td><span th:text="${user.region}"> Region </span></td>
             <td><span th:text="${user.age}"> Alder </span></td>
             <td><span th:text="${user.about}"> Om mig </span></td>
