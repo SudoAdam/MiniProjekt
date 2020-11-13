@@ -2,12 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="myCSS.css">
     <title>Title</title>
 </head>
 <th:block th:include="/includes/header :: header"></th:block>
 <body>
     <p>Liste over personer der passer til dine</p>
-
+    <table>
+        <thead>
+        <tr>
+            <th> Fornavn </th>
+            <th> Efternavn </th>
+            <th> Region </th>
+            <th> Alder </th>
+            <th> Om mig </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.empty}">
+            <td colspan="2"> No Books Available </td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td><span th:text="${users.name}"> Title </span></td>
+            <td><span th:text="${users.surname}"> Author </span></td>
+            <td><span th:text="${users.region}"> Author </span></td>
+            <td><span th:text="${users.age}"> Author </span></td>
+            <td><span th:text="${users.about}"> Author </span></td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 <th:block th:include="/includes/footer :: footer"></th:block>
 </html>
