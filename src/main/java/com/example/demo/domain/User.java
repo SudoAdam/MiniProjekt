@@ -44,7 +44,7 @@ public class User {
         this .isAdmin = isAdmin;
     }
 
-    public User(String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin) {
+    public User(String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin, String imageLink) {
         this.id = id;
         this.username = username;
         this.password = password;

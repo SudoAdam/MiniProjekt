@@ -152,11 +152,12 @@ public class MyController {
             @RequestParam String region,
             @RequestParam int age,
             @RequestParam String about,
+            @RequestParam String imageLink,
             Model model) {
         ArrayList<User> userList = new ArrayList<>();
         model.addAttribute("user", userList);
         System.out.println("Rasmus kode er god");
-        User u = new User(username, password, name, surname, region, age, about, false);
+        User u = new User(username, password, name, surname, region, age, about, false, imageLink);
         jdbcWriter.createUser(u);
         return "index";
     }
@@ -192,6 +193,7 @@ public class MyController {
                              @RequestParam String region,
                              @RequestParam int age,
                              @RequestParam String about,
+                             @RequestParam String imageLink,
                              Model modelUpdate) {
         ArrayList<User> userUpList = new ArrayList<>();
         modelUpdate.addAttribute("user", userUpList);

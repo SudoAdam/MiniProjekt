@@ -67,7 +67,7 @@ public class JDBCWriter {
 
     public void createUser(User u) {
         Connection connection = DBManager.getConnection();
-        String sqlstr = "INSERT INTO users (email, password, name, surname, region, age, about) VAlUES (?, ?, ?, ?, ?, ?, ?);";
+        String sqlstr = "INSERT INTO users (email, password, name, surname, region, age, about, image_link) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlstr);
@@ -78,6 +78,7 @@ public class JDBCWriter {
             preparedStatement.setString(5, u.getRegion());
             preparedStatement.setInt(6, u.getAge());
             preparedStatement.setString(7, u.getAbout());
+            preparedStatement.setString(8, u.getImageLink());
             int row = preparedStatement.executeUpdate();
             System.out.println(row);
             System.out.println(preparedStatement);
@@ -88,7 +89,7 @@ public class JDBCWriter {
 
     public void updateUser( User u) {
         Connection connection = DBManager.getConnection();
-        String sqlupstr = "UPDATE users SET email = ?, surname = ?, region = ?, age = ?, about = ? WHERE user_id = ?;";
+        String sqlupstr = "UPDATE users SET email = ?, surname = ?, region = ?, age = ?, about = ?, image_link = ? WHERE user_id = ?;";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlupstr);
@@ -98,6 +99,7 @@ public class JDBCWriter {
             preparedStatement.setInt(4, u.getAge());
             preparedStatement.setString(5, u.getAbout());
             preparedStatement.setInt(6, u.getId());
+            preparedStatement.setString(7, u.getImageLink());
             int row = preparedStatement.executeUpdate();
             System.out.println(row);
             System.out.println(preparedStatement);
