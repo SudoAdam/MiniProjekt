@@ -56,6 +56,15 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+.buttonupdate{
+    border-radius: 1px;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 1px;
+    color: #45a049;
+
+}
+
 .container {
     border-radius: 10px;
     background-color: #f2f2f2;
@@ -72,6 +81,33 @@ input[type=submit]:hover {
 .container h3{
     text-align: center;
     font: small-caps bold 30px sans-serif;
+    margin: 10px 0px 10px 0px;
+    color: #333333;
+}
+
+.containersog {
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    overflow: hidden;
+    width: 500px;
+    max-width: 100%;
+    min-height: 650px;
+    margin: 50px auto auto auto;
+    box-shadow: 0 20px 78px rgba(0,0,0,1),
+    0 50px 50px rgba(0,0,0,0.22);
+}
+
+.containersog h3{
+    text-align: center;
+    font: small-caps bold 20px sans-serif;
+    margin: 10px 0px 10px 0px;
+    color: #333333;
+}
+
+.containersog h2{
+    text-align: center;
+    font: small-caps bold 25px sans-serif;
     margin: 10px 0px 10px 0px;
     color: #333333;
 }
@@ -118,11 +154,10 @@ input[type=submit]:hover {
     border-right:0;
 }
 .div_text {
-    display: flex;
     flex-wrap: wrap;
     width: 20vw;
     height: 2.5vw;
-    border-style: solid;
+    margin: auto;
 }
 
 #footer{
@@ -155,9 +190,6 @@ input[type=submit]:hover {
     border-radius: 4px;
 }
 
-.div_text {
-    margin: auto;
-}
 
 .header img{
     width: 120px;
@@ -167,12 +199,14 @@ input[type=submit]:hover {
 
 .box{
     width: 800px;
-    height: 600px;
+    height: 350px;
     margin: 50px auto auto auto;
     box-shadow: 0 20px 78px rgba(0,0,0,1),
     0 50px 50px rgba(0,0,0,0.22);
     border-radius: 15px;
     overflow: hidden;
+    border-style: groove;
+    border-width: 1px;
 }
 
 .box-img{
@@ -181,17 +215,17 @@ input[type=submit]:hover {
 }
 
 .box-img img {
-    height: 250px;
-    width: 250px;
+    height: 270px;
+    width: 270px;
     object-fit: cover;
     border-radius: 50%;
-    margin: 10px 0px 0px 10px;
+    margin: 20px 0px 0px 20px;
 }
 
 .box-text{
     width: 55%;
     float: left;
-    padding: 5px 70px 70px 35px;
+    padding: 20px 70px 70px 35px;
 }
 
 .box-text h1{
@@ -220,3 +254,30 @@ input[type=submit]:hover {
     letter-spacing: 0.25px;
 }
 
+.searchbox {
+    width: 800px;
+    height: 600px;
+    margin: 50px auto auto auto;
+    box-shadow: 0 20px 78px rgba(0,0,0,1),
+    0 50px 50px rgba(0,0,0,0.22);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.overskrift {
+    text-align: center;
+    font: small-caps bold 20px sans-serif;
+    margin: 10px 0px 10px 0px;
+    color: #f2f2f2;
+}
+.overskriftbox{
+    width: 600px;
+    height: 50px;
+    margin: 50px auto auto auto;
+    box-shadow: 0 20px 78px rgba(0,0,0,1),
+    0 50px 50px rgba(0,0,0,0.22);
+    border-radius: 15px;
+    overflow: hidden;
+    border-style: groove;
+    border-width: 1px;
+}

@@ -7,15 +7,13 @@
 </head>
 <th:block th:include="/includes/header :: header"></th:block>
 <body>
+<div class="containersog">
 <form action="/searchResult" method="post">
    <div class="div_text">
-       <h3>Hvad søger du efter?</h3>
-       <p>
-           <br>
-       </p>
+       <h2>hvad søger du efter?</h2>
        <br><br>
        <h3>
-           Ønsket køn
+           ønsket køn
        </h3>
        <select name="gender_id" id="genderList">
            <option value="1">Mand</option>
@@ -23,13 +21,13 @@
            <option value="3">Andet</option>
        </select>
         <h3>
-            Ønsket alder
+            ønsket alder
         </h3>
         <input type="text" name="minAge" placeholder="Min.">
         <input type="text" name="maxAge" placeholder="Max.">
         <p>
         <h3>
-            Ønsket region
+            ønsket region
         </h3>
         <select name="region" id="regionList">
            <option value="Hoved">Hovedstaden</option>
@@ -44,6 +42,7 @@
         <button type="submit" name="action">Søg</button>
     </div>
 </form>
+</div>
 </body>
 <th:block th:include="/includes/footer :: footer"></th:block>
 </html>
