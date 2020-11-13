@@ -195,7 +195,7 @@ public class MyController {
                              Model modelUpdate) {
         ArrayList<User> userUpList = new ArrayList<>();
         modelUpdate.addAttribute("user", userUpList);
-        User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about, false);
+        User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about, false, user.getImageLink());
         jdbcWriter.updateUser(u);
         request.setAttribute("user", u, WebRequest.SCOPE_SESSION);
         return "redirect:/visProfil";
