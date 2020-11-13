@@ -13,7 +13,9 @@ public class User {
     private String region;
     private int age;
     private String about;
+    private int gender_id;
     private Boolean isAdmin;
+    private String imageLink;
 
    /* public User(int id, String name, String password) {
         this.id = id;
@@ -21,7 +23,7 @@ public class User {
         this.password = password;
     }*/
 
-    public User( int id, String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin) {
+    public User( int id, String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin, int gender_id, String imageLink) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -31,6 +33,8 @@ public class User {
         this.age = age;
         this.about = about;
         this .isAdmin = isAdmin;
+        this.gender_id = gender_id;
+        this.imageLink = imageLink;
     }
 
     public User(String name, String surname, String region, int age, String about, Boolean isAdmin) {
@@ -42,7 +46,7 @@ public class User {
         this .isAdmin = isAdmin;
     }
 
-    public User(String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin) {
+    public User(String username, String password, String name, String surname, String region, int age, String about, Boolean isAdmin, String imageLink,  int gender_id) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -52,11 +56,14 @@ public class User {
         this.age = age;
         this.about = about;
         this .isAdmin = isAdmin;
+        this.gender_id = gender_id;
+        this.imageLink = imageLink;
     }
 
     public User(){
 
     }
+
 
     public int getId() {
         return id;
@@ -128,6 +135,22 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    public int getGender_id() {
+        return gender_id;
+    }
+
+    public void setGender_id(int gender_id) {
+        this.gender_id = gender_id;
     }
 
     @Override

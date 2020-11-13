@@ -4,8 +4,10 @@ import com.example.demo.database.DBManager;
 import com.example.demo.database.DBSearch;
 import com.example.demo.database.JDBCWriter;
 import com.example.demo.domain.LogIn;
+import com.example.demo.domain.ResultUsers;
 import com.example.demo.domain.User;
 import com.example.demo.services.Search;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -147,11 +149,13 @@ public class MyController {
             @RequestParam String region,
             @RequestParam int age,
             @RequestParam String about,
-            Model model) {
-        ArrayList<User> userList = new ArrayList<>();
-        model.addAttribute("user", userList);
+            @RequestParam String imageLink,
+            @RequestParam int gender_id) {
+        //ArrayList<User> userList = new ArrayList<>();
+        //model.addAttribute("user", userList);
         System.out.println("Rasmus kode er god");
-        User u = new User(username, password, name, surname, region, age, about, false);
+        System.out.println(imageLink);
+        User u = new User(username, password, name, surname, region, age, about, false, imageLink, gender_id);
         jdbcWriter.createUser(u);
         return "index";
     }
@@ -187,10 +191,11 @@ public class MyController {
                              @RequestParam String region,
                              @RequestParam int age,
                              @RequestParam String about,
+                             @RequestParam String imageLink,
                              Model modelUpdate) {
         ArrayList<User> userUpList = new ArrayList<>();
         modelUpdate.addAttribute("user", userUpList);
-        User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about, false);
+        User u = new User(user.getId(), user.getUsername(), user.getPassword(), name, surname, region, age, about, false, user.getGender_id(), user.getImageLink());
         jdbcWriter.updateUser(u);
         request.setAttribute("user", u, WebRequest.SCOPE_SESSION);
         return "redirect:/visProfil";
@@ -203,11 +208,19 @@ public class MyController {
 
     @PostMapping("/searchResult")
     public String Result(WebRequest request,
+            @RequestParam int gender_id,
             @RequestParam String minAge,
             @RequestParam String maxAge,
             @RequestParam String region) {
-        Search search = new Search();
-        search.writeStatement(minAge, maxAge, region, user);
+        search.writeStatement(gender_id, minAge, maxAge, region, user);
+        return "redirect:/searchList";
+    }
+
+    @GetMapping("/searchList")
+    public String searchList(Model model){
+        ArrayList<ResultUsers> userSearchList = search.searchResult();
+        model.addAttribute("users", userSearchList);
+        System.out.println(userSearchList);
         return "searchList";
     }
 
@@ -217,15 +230,9 @@ public class MyController {
         return "index";
     }
 
-    @GetMapping("/removeuser")//htmlside
-    public String removeuser(@RequestParam int userID) {
-        jdbcWriter.removeUser(userID);
-        return "adminProfil";
-    }
-
     @PostMapping("/removeduser")
     public String removeduser(@RequestParam int userID) {
         jdbcWriter.removeUser(userID);
-        return "removedUser";
+        return "adminProfil";
     }
 }
