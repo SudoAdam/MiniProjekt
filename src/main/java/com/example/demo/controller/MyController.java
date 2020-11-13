@@ -154,9 +154,10 @@ public class MyController {
             @RequestParam String about,
             @RequestParam String imageLink,
             Model model) {
-        ArrayList<User> userList = new ArrayList<>();
-        model.addAttribute("user", userList);
+        //ArrayList<User> userList = new ArrayList<>();
+        //model.addAttribute("user", userList);
         System.out.println("Rasmus kode er god");
+        System.out.println(imageLink);
         User u = new User(username, password, name, surname, region, age, about, false, imageLink);
         jdbcWriter.createUser(u);
         return "index";

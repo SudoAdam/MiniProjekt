@@ -54,6 +54,7 @@ public class User {
         this.age = age;
         this.about = about;
         this .isAdmin = isAdmin;
+        this.imageLink = imageLink;
     }
 
     public User(){
