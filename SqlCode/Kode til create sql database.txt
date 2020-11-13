@@ -21,13 +21,12 @@ USE `userdb` ;
 -- Table `userdb`.`gender`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `userdb`.`gender` (
-  `id_gender` INT NOT NULL AUTO_INCREMENT,
+  `id_gender` INT NOT NULL,
   `gender` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_gender`),
   UNIQUE INDEX `gender_UNIQUE` (`gender` ASC) VISIBLE,
   UNIQUE INDEX `id_gender_UNIQUE` (`id_gender` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -66,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `userdb`.`users` (
   UNIQUE INDEX `id_UNIQUE` (`user_id` ASC) VISIBLE,
   UNIQUE INDEX `username_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 28
+AUTO_INCREMENT = 30
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
