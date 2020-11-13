@@ -107,15 +107,17 @@ public class JDBCWriter {
     }
 
     public void removeUser(int userID){
+        System.out.println(userID);
         Connection connection = DBManager.getConnection();
-        String sqlRemove = "DELETE * FROM users WHERE user_id = ?";
+        String sqlRemove = "DELETE FROM users WHERE user_id = "+userID+ "; ";
         PreparedStatement preparedStatement;
         String userIDstr = "" + userID;
         try{
             preparedStatement = connection.prepareStatement(sqlRemove);
-            preparedStatement.setString(1,   userIDstr );
-            preparedStatement.execute(sqlRemove);
+            //preparedStatement.setInt(1,   userID );
+            preparedStatement.executeUpdate(sqlRemove);
         } catch(SQLException sqlerr){
+            sqlerr.printStackTrace();
             System.out.println("Fejl =" + sqlerr);
         }
     }
