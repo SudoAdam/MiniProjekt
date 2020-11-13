@@ -230,7 +230,7 @@ public class MyController {
 
     @PostMapping("/removeduser")
     public String removeduser(@RequestParam int userID){
-        jdbcWriter.removeUser(userID);
+       jdbcWriter.removeUser(userID);
         return "removedUser";
     }
 }
