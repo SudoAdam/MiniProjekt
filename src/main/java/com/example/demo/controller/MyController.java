@@ -7,13 +7,11 @@ import com.example.demo.domain.LogIn;
 import com.example.demo.domain.ResultUsers;
 import com.example.demo.domain.User;
 import com.example.demo.services.Search;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
@@ -52,12 +50,12 @@ public class MyController {
 
     @GetMapping("/admin")
     public String admin() {
-        return "admin";
+        return "admin/admin";
     }
 
     @GetMapping("/adminProfil")
     public String adminProfil() {
-        return "adminProfil";
+        return "admin/adminProfil";
     }
 
 
@@ -120,7 +118,7 @@ public class MyController {
             if (logIn.login(username, password) != null) {
                 if (isAdmin == true) {
                     user = logIn.login(username, password);
-                    return "adminProfil";
+                    return "admin/adminProfil";
                 } else {
                     System.out.println("You're not an admin");
                 }

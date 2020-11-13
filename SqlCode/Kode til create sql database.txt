@@ -62,16 +62,9 @@ CREATE TABLE IF NOT EXISTS `userdb`.`users` (
   `gender_id` INT NULL DEFAULT NULL,
   `image_link` VARCHAR(2500) NULL DEFAULT NULL,
   `is_admin` INT NULL DEFAULT '0',
-  `gender_id_gender` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `gender_id_gender`),
+  PRIMARY KEY (`user_id`),
   UNIQUE INDEX `id_UNIQUE` (`user_id` ASC) VISIBLE,
-  UNIQUE INDEX `username_UNIQUE` (`email` ASC) VISIBLE,
-  INDEX `fk_users_gender_idx` (`gender_id_gender` ASC) VISIBLE,
-  CONSTRAINT `fk_users_gender`
-    FOREIGN KEY (`gender_id_gender`)
-    REFERENCES `userdb`.`gender` (`id_gender`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `username_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 28
 DEFAULT CHARACTER SET = utf8mb4
