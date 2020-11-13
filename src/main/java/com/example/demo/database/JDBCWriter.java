@@ -67,7 +67,7 @@ public class JDBCWriter {
 
     public void createUser(User u) {
         Connection connection = DBManager.getConnection();
-        String sqlstr = "INSERT INTO users (email, password, name, surname, region, age, about, image_link) VAlUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String sqlstr = "INSERT INTO users (email, password, name, surname, region, age, about, image_link, gender_id) VAlUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(sqlstr);
@@ -79,6 +79,7 @@ public class JDBCWriter {
             preparedStatement.setInt(6, u.getAge());
             preparedStatement.setString(7, u.getAbout());
             preparedStatement.setString(8, u.getImageLink());
+            preparedStatement.setInt(9, u.getGender_id());
             int row = preparedStatement.executeUpdate();
             System.out.println(row);
             System.out.println(preparedStatement);
@@ -126,7 +127,7 @@ public class JDBCWriter {
 
     public User logIn(String user, String pass) {
         Connection connection = DBManager.getConnection();
-        String searchStr = "SELECT count(*) as count, user_id, email, password, name, surname, region, age, about, is_admin, image_link FROM users WHERE email = ? and password = ?;";
+        String searchStr = "SELECT count(*) as count, user_id, email, password, name, surname, region, age, about, is_admin, image_link, gender_id FROM users WHERE email = ? and password = ?;";
         PreparedStatement preparedStatement;
         User u = new User();
         int res = -1;
@@ -153,9 +154,11 @@ public class JDBCWriter {
                 String about = "" + resset.getObject("about");
                 String is_admin = "" + resset.getObject("is_admin");
                 String imageLink = "" + resset.getObject("image_link");
+                String gender_id = "" + resset.getObject("gender_id");
 
                 int idN = Integer.parseInt(id);
                 int ageN = Integer.parseInt(age);
+                int gender_idN = Integer.parseInt(gender_id);
                 Boolean isAdmin = false;
 
                 System.out.println("vores id er = " + idN + " og som string " + id);
@@ -163,7 +166,7 @@ public class JDBCWriter {
                 if (is_admin.equals("1")){
                     isAdmin = true;
                 }
-                u = new User(idN, username,pass,name,surname,region, ageN,about,isAdmin,imageLink);
+                u = new User(idN, username,pass,name,surname,region, ageN,about,isAdmin, gender_idN, imageLink);
             } else {
                 System.out.println("login fejl. antal fundne profiler: " + res);
             }
