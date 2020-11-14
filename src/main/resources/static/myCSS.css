@@ -51,6 +51,14 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+.container .login{
+    background-color: #4CAF50;
+}
+
+.container .opretMig{
+    background-color: #4CAF50;
+}
+
 
 .button{
     background-color: #45a049;
