@@ -14,20 +14,16 @@
             <img th:src="${session.user.imageLink}" >
         </div>
         <div class="box-text">
-            <h1>Fulde navn:</h1>
-            <p th:text="${session.user.name}">Fulde navn</p>
-            <p th:text="${session.user.surname}">Efternavn</p>
-            <h2>Region:</h2>
-            <p th:text="${session.user.region}">Region</p>
-            <h2>Alder:</h2>
-            <p th:text="${session.user.age}">Alder</p>
-            <h2>Om mig:</h2>
-            <p th:text="${session.user.about}">Om mig</p>
-            <p th:text="${session.user.imageLink}"></p>
+            <h2> navn: <span th:text="${session.user.name}">Fulde navn </span></h2>
+            <h2> efternavn: <span th:text="${session.user.surname}">Efternavn</span></h2>
+            <h2> region: <span th:text="${session.user.region}">Region</span></h2>
+            <h2> alder: <span th:text="${session.user.age}">Alder</span></h2>
+            <h2>om mig:</h2>
+            <h2 th:text="${session.user.about}">Om mig</h2>
 
-            <div class="">
-                <li><a href="/update">Update profil</a></li>
-            </div>
+
+                <a style="text-decoration:none" href="/update" class="buttonupdate">Opdater profil</a>
+
         </div>
     </div>
 </div>

@@ -7,32 +7,26 @@
 </head>
 <th:block th:include="/includes/header :: header"></th:block>
 <body>
-<div class="div_text">
-    <h3>Liste over personer der passer til dine</h3>
-    <table>
-        <thead>
-        <tr>
-            <th> ImageLink</th>
-            <th> Navn </th>
-            <th> Efternavn </th>
-            <th> E-mail</th>
-            <th> Region </th>
-            <th> Alder </th>
-            <th> Om mig </th>
-        </tr>
-        </thead>
-        <tbody>
+<div class="overskriftbox">
+    <h3 class="overskrift">Liste over personer der passer til dine ønsker</h3>
+</div>
+<div class="table">
         <tr th:each="user : ${users}">
-            <div class="box-img"><td><img th:src="${user.imageLink}"> imageLink</img></td></div>
-            <td><span th:text="${user.name}"> Name </span></td>
-            <td><span th:text="${user.surname}"> Efternavn </span></td>
-            <td><span th:text="${user.username}"> E-mail</span></td>
-            <td><span th:text="${user.region}"> Region </span></td>
-            <td><span th:text="${user.age}"> Alder </span></td>
-            <td><span th:text="${user.about}"> Om mig </span></td>
+            <div class="box">
+            <div class="box-img">
+                    <img th:src="${user.imageLink}">
+            </div>
+                <div class="box-text">
+            <p> Navn: <span th:text="${user.name}"> Name </span></p>
+            <p> Efternavn: <span th:text="${user.surname}"> Efternavn </span></p>
+            <p> E-mail: <span th:text="${user.username}"> E-mail</span></p>
+            <p> Region: <span th:text="${user.region}"> Region </span></p>
+            <p> Alder: <span th:text="${user.age}"> Alder </span></p>
+            <p> Om mig: <span th:text="${user.about}"> Om mig </span></p>
+            </div>
+            </div>
         </tr>
-        </tbody>
-    </table>
+
     </div>
 </body>
 <th:block th:include="/includes/footer :: footer"></th:block>
